@@ -1,11 +1,9 @@
 import "./style.scss"
 
 const index = () => {
-    return (
-        <div>
-            {/* code */}
-        </div>
-    );
+    return <>
+    <div>Home</div>
+    </>;
 };
 
 export default index;

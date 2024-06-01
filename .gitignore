@@ -11,6 +11,7 @@ node_modules
 .env
 dist
 dist-ssr
+src/pages/auth
 *.local
 
 # Editor directories and files

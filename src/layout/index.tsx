@@ -1,11 +1,3 @@
+import HomeLayout from "./home-layout";
 
-
-const index = () => {
-    return (
-        <>
-            {/* content */}
-        </>
-    );
-};
-
-export default index;
+export { HomeLayout }
