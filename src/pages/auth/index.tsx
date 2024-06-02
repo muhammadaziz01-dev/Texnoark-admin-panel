@@ -1,6 +1,6 @@
 
 
-import  { useState } from "react";
+import  { useState , useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage , FormikProps} from "formik";
 import { useMask } from "@react-input/mask";
 import { TextField, Button, InputAdornment, IconButton } from "@mui/material";
@@ -9,7 +9,7 @@ import { ToastContainer , toast } from "react-toastify";
 import { styled } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 
-import {setCookies} from "@coocse"
+import {setCookies , getCookies} from "@coocse"
 import {auth} from "@service-auth"
 import {signInValidationSchema , signUpValidationSchema } from "@validations"
 import "./style.scss";
@@ -20,6 +20,16 @@ const index = () => {
   const [showPassword, setShowPassword] = useState(false);
   const inputRef = useMask({mask: "+998 (__) ___-__-__",replacement: { _: /\d/ },});
 
+
+
+
+  //-> useEfect <------
+  useEffect(() => {
+    if(getCookies("access_token")){
+        navigate("/home");
+    }
+  })
+  //=-=--=-===-=-===-=-=-=
 
   // Custom styling for TextField when there's an error
 const StyledTextField = styled(TextField)(({  }) => ({
