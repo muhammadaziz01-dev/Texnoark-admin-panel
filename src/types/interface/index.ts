@@ -15,6 +15,7 @@ export interface Signup extends Signin{
 export interface Request{
     signin:(data:Signin)=>any,
     signup:(data:Signup)=>any,
+    logout: () => void;
 }
 
 // ------------------------------------
