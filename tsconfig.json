@@ -26,13 +26,14 @@
             "@layut": ["./src/layout"],
             "@pages": ["./src/pages"],
             "@router": ["./src/router"],
+            "@validations": ["./src/validations"],
 
 
             "@services": ["./src/services"],
+            "@service-auth": ["./src/service/auth"],
             // "@category": ["./src/service/category"],
             // "@worker": ["./src/service/worker"],
             // "@product": ["./src/service/product"],
-            "@validations": ["./src/validations"],
 
 
 

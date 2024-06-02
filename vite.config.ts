@@ -12,11 +12,12 @@ export default defineConfig({
       { find: '@pages', replacement: '/src/pages' },
       { find: '@assets', replacement: '/src/assets' },
       { find: '@router', replacement: '/src/router' },
-      // { find: '@validations', replacement: '/src/validations' },
+      { find: '@validations', replacement: '/src/validations' },
       // { find: '@modals', replacement: '/src/components/modals' },
 
 
       { find: '@coocse', replacement: '/src/utils/cocies.ts' },
+      {find: "@service-auth" , replacement: "/src/service/auth"}
       // { find: '@globol-interface', replacement: '/src/types/globol-interface' },
 
       // { find: '@category', replacement: '/src/service/category' },
