@@ -10,6 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 // import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 
 import { useNavigate } from "react-router-dom";
 import {removeCookiesAll} from "@coocse";
@@ -58,7 +59,7 @@ const handleSetting =()=>{
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <Avatar sx={{ width: 32, height: 32 }}><PersonIcon/></Avatar>
           </IconButton>
         </Tooltip>
       </Box>
