@@ -13,4 +13,10 @@ export const removeCookies = (title:string) => {
     return Cookies.remove(title)
 }
 
+export const removeCookiesAll =(removNames:string[]) => {
+    return removNames.forEach((name) =>{
+        Cookies.remove(name)
+    })
+}
+
 

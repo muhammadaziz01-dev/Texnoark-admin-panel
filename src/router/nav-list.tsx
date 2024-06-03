@@ -1,6 +1,9 @@
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import CategoryIcon from '@mui/icons-material/Category';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 interface navListInterface {
     path: string,
@@ -16,14 +19,29 @@ const navList:navListInterface[] = [
       icon: <CategoryIcon />,
     },
     {
+        path:"/home/brands"  ,
+        title:"Brands",
+        icon: <MilitaryTechIcon />,
+    },
+    {
+        path:"/home/models"  ,
+        title:"Models",
+        icon: <ModelTrainingIcon />,
+    },
+    {
         path:"/home/products"  ,
         title:"Products",
         icon: <ProductionQuantityLimitsIcon />,
     },
     {
-        path:"/home/workers"  ,
-        title:"Workers",
-        icon: <PeopleAltIcon />,
+        path:"/home/sales"  ,
+        title:"Sales",
+        icon: <MonetizationOnIcon />,
+    },
+    {
+        path:"/home/settings"  ,
+        title:"Settings",
+        icon: <SettingsIcon />,
     },
 ]
 

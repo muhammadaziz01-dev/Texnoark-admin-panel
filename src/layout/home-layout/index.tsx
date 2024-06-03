@@ -2,7 +2,7 @@ import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 
 import {getCookies} from "@coocse"
 import navList from "../../router/nav-list"
-// import {AccountMenu } from "@ui"
+import {AccountMenu } from "@ui"
 import Logo from "../../assets/texnoatk-logo-grup.svg"
 const drawerWidth = 240;
 
@@ -63,15 +63,9 @@ export default function ResponsiveDrawer(props: Props) {
   })
   //=-=--=-===-=-===-=-=-=
 
-
-
   const {pathname} = useLocation();
-//   const navigate = useNavigate()
-//   React.useEffect(() => {
-//     if(getCookies("acses_token")){
-//         navigate("/home");
-//     }
-// }, [])
+
+
   // ....------------------------------------------------
   
 
@@ -80,10 +74,10 @@ export default function ResponsiveDrawer(props: Props) {
      <div className='w-full py-[1px] flex items-center justify-center'>
         <img className='w-[150px] h-[62px]' src={Logo} alt="logo" />
       </div>
-      <Divider />
-      <List className='bg-[#F9F9F9] min-h-[90vh] ' >
+      {/* <Divider /> */}
+      <List className='bg-[#FFF] min-h-[90vh]' >
           {navList.map((el, index) => (
-            <NavLink key={index} to={el.path} className={el.path === pathname ? "block bg-[#109CF1] text-white duration-200  " :" "}>
+            <NavLink key={index} to={el.path} className={el.path === pathname ? "block bg-[rgb(213,82,0)] text-white duration-200    " :"  "}>
                <ListItem disablePadding>
                  <ListItemButton>
                    <ListItemIcon>
@@ -112,7 +106,7 @@ export default function ResponsiveDrawer(props: Props) {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-        <Toolbar className='bg-[#F9F9F9] '>
+        <Toolbar className='bg-[#FFF] '>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -126,14 +120,13 @@ export default function ResponsiveDrawer(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography  noWrap component="div" className='bg-[#F9F9F9] flex items-center justify-between w-full h-full'>
+          <Typography  noWrap component="div" className='bg-[#FFF] flex items-center justify-between w-full h-full'>
           
           <div>
-            <h1 className='text-[20px] text-slate-600'>{pathname == "/home/workers" ? "Worker" : pathname == "/home/products" ? "Products" :pathname == "/home" ? "Category"  : "Product" }</h1>
+            <h1 className='text-[20px] text-slate-600'>{pathname == "/home/brands" ? "Brands":pathname == "/home/models" ? "Models" : pathname == "/home/sales" ? "Sales": pathname == "/home/settings" ? "Settings": pathname == "/home/products" ? "Products" :pathname == "/home" ? "Category"  : "Error" }</h1>
           </div>
           <div className='flex items-center gap-5'>
-            <p> acaunt menu</p>
-            {/* <AccountMenu/> */}
+            <AccountMenu/>
           </div>
           </Typography>
         </Toolbar>
