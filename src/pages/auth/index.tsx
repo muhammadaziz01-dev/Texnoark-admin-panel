@@ -1,6 +1,6 @@
 
 
-import  { useState , useEffect } from "react";
+import  { useState  } from "react";
 import { Formik, Form, Field, ErrorMessage , FormikProps} from "formik";
 import { useMask } from "@react-input/mask";
 import { TextField, Button, InputAdornment, IconButton } from "@mui/material";
@@ -9,7 +9,7 @@ import { ToastContainer , toast } from "react-toastify";
 import { styled } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 
-import {setCookies , getCookies} from "@coocse"
+import {setCookies } from "@coocse"
 import {auth} from "@service-auth"
 import {signInValidationSchema , signUpValidationSchema } from "@validations"
 import "./style.scss";

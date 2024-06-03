@@ -14,10 +14,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { NavLink , Outlet, useLocation } from 'react-router-dom';
 import { ListItemText } from '@mui/material';
-import { useEffect  } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useEffect  } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-import {getCookies} from "@coocse"
+// import {getCookies} from "@coocse"
 import navList from "../../router/nav-list"
 import {AccountMenu } from "@ui"
 import Logo from "../../assets/texnoatk-logo-grup.svg"
@@ -53,7 +53,7 @@ export default function ResponsiveDrawer(props: Props) {
 
 
   // my code ....------------------------------------------------
- const navigate = useNavigate()
+//  const navigate = useNavigate()
 
   //-> useEfect <------
   // useEffect(() => {
