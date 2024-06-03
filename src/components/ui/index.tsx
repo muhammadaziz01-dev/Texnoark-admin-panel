@@ -1,3 +1,4 @@
 import AccountMenu from "./menu";
+import GlobalTable from "./global-teble";
 
-export {AccountMenu}
+export {AccountMenu , GlobalTable}

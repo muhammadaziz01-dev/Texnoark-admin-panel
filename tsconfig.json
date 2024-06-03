@@ -10,7 +10,7 @@
 
             "@types": ["./src/types"],
             "@interface": ["./src/types/interface"],
-            // "@globol-interface": ["./src/types/globol-interface"],
+            "@globol-interface": ["./src/types/globol-interface"],
             "@enums": ["./src/types/enums"],
 
             "@utils": ["./src/utils"],
@@ -19,7 +19,7 @@
 
             "@components": ["./src/components"],
             "@containers": ["./src/components/containers"],
-            // "@modals": ["./src/components/modals"],
+            "@modals": ["./src/components/modals"],
             "@ui": ["./src/components/ui"],
             "@sections": ["./src/components/sections"],
 
@@ -31,15 +31,15 @@
 
             "@services": ["./src/services"],
             "@service-auth": ["./src/service/auth"],
-            // "@category": ["./src/service/category"],
-            // "@worker": ["./src/service/worker"],
+            "@category": ["./src/service/category"],
+            "@brand": ["./src/service/brand"],
             // "@product": ["./src/service/product"],
 
 
 
 
-            // "@store-categors": ["./src/store/categors"],
-            // "@store-product": ["./src/store/products"],
+            "@store-category": ["./src/stor/stor-category"],
+            "@store-brand": ["./src/stor/stor-brand"],
 
             
         },

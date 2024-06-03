@@ -13,20 +13,20 @@ export default defineConfig({
       { find: '@assets', replacement: '/src/assets' },
       { find: '@router', replacement: '/src/router' },
       { find: '@validations', replacement: '/src/validations' },
-      // { find: '@modals', replacement: '/src/components/modals' },
+      { find: '@modals', replacement: '/src/components/modals' },
 
 
       { find: '@coocse', replacement: '/src/utils/cocies.ts' },
-      {find: "@service-auth" , replacement: "/src/service/auth"}
-      // { find: '@globol-interface', replacement: '/src/types/globol-interface' },
+      {find: "@service-auth" , replacement: "/src/service/auth"},
+      { find: '@globol-interface', replacement: '/src/types/globol-interface' },
 
-      // { find: '@category', replacement: '/src/service/category' },
-      // { find: '@product', replacement: '/src/service/product' },
+      { find: '@category', replacement: '/src/service/category' },
+      { find: '@brand', replacement: '/src/service/brand' },
 
 
 
-      // { find: '@store-categors', replacement: '/src/store/categors'},
-      // { find: '@store-product', replacement: '/src/store/products'},
+      { find: '@stor-category', replacement: '/src/stor/stor-category'},
+      { find: '@store-brand', replacement: '/src/stor/stor-brand'},
 
     ]
   }

@@ -3,7 +3,7 @@ interface Heder{
     value:string;
 }
 interface Body {
-    id: string;
+    id: number;
     [key: string]:any;
 }
 
