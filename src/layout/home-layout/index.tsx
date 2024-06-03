@@ -56,11 +56,11 @@ export default function ResponsiveDrawer(props: Props) {
  const navigate = useNavigate()
 
   //-> useEfect <------
-  useEffect(() => {
-    if(!getCookies("access_token")){
-        navigate("/");
-    }
-  })
+  // useEffect(() => {
+  //   if(!getCookies("access_token")){
+  //       navigate("/");
+  //   }
+  // })
   //=-=--=-===-=-===-=-=-=
 
   const {pathname} = useLocation();

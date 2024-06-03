@@ -24,11 +24,11 @@ const index = () => {
 
 
   //-> useEfect <------
-  useEffect(() => {
-    if(getCookies("access_token")){
-        navigate("/home");
-    }
-  })
+  // useEffect(() => {
+  //   if(getCookies("access_token")){
+  //       navigate("/home");
+  //   }
+  // })
   //=-=--=-===-=-===-=-=-=
 
   // Custom styling for TextField when there's an error
