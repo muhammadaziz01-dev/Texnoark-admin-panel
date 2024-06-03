@@ -8,8 +8,8 @@
 }
 
 .auth-parent{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-color: #d77e47;
+    background: linear-gradient(to right, #e5bead, #D55200);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,7 +52,7 @@
 }
 
 .container-auth .btn-test{
-    background-color: #512da8;
+    background-color: #D55200;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -151,9 +151,9 @@
 }
 
 .toggle{
-    background-color: #512da8;
+    background-color: #D55200;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #d37d48, #D55200);
     color: #fff;
     position: relative;
     left: -100%;

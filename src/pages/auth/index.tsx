@@ -112,7 +112,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
             >
               {({ errors, touched }: FormikProps<any>) => (
               <Form className="w-full flex flex-col gap-[8px]">
-              <h2 className=" text-center text-[#512da8] text-[22px] font-semibold">Registration</h2>
+              <h2 className=" text-center text-[#D55200] text-[22px] font-semibold">Registration</h2>
                 <Field
                   as={TextField}
                   label="First name"
@@ -205,7 +205,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
                 
 
                 <Button
-                  sx={{ fontSize: "16px", fontWeight: "600", padding: "14px" ,backgroundColor: "#512da8" }}
+                  sx={{ fontSize: "16px", fontWeight: "600", padding: "14px" ,backgroundColor: "#D55200" ,"&:hover" :{background: "#D52200"} }}
                   variant="contained"
                   type="submit"
                   className="w-[100%]"
@@ -224,7 +224,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
             >
               {({ errors, touched }: FormikProps<any>) => (
               <Form className="w-full flex flex-col gap-[15px]">
-                <h2 className=" text-center text-[#512da8] text-[22px] font-semibold">login</h2>
+                <h2 className=" text-center text-[#D55200] text-[22px] font-semibold">login</h2>
                 <Field
                   as={StyledTextField}
                   label="Email"
@@ -246,7 +246,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
                     alert("therefore, it should not be forgotten : ) ");
                     localStorage.clear();
                   }}
-                  className="text-[20px] text-[rgb(81,45,168)] forgrt-pasword hover:text-[rgb(131,114,172)] duration-200 cursor-pointer"
+                  className="text-[20px] text-[#D52200] forgrt-pasword hover:text-[#d86f59] duration-200 cursor-pointer"
                 >
                   Forgot password?
                 </p>
@@ -280,7 +280,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
                 />
 
                 <Button
-                  sx={{ fontSize: "16px", fontWeight: "600", padding: "14px" , backgroundColor: "#512da8" }}
+                  sx={{ fontSize: "16px", fontWeight: "600", padding: "14px" , backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
                   variant="contained"
                   type="submit"
                   className="w-[100%]"
