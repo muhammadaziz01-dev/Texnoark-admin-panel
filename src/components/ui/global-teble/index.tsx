@@ -15,7 +15,8 @@ import {
 // import {  useSearchParams } from "react-router-dom";
 
 import { Props } from "@globol-interface";
-import { ModalDelete} from "@modals"
+import { ModalDelete , ModalBrand} from "@modals"
+
 
 function indec({ heders, body, skelatonLoader }: Props) {
 
@@ -66,7 +67,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                             return <TableCell key={index2}>{
                               heder.value == "action" ? <div className="flex items-center gap-2">
                                   <button className=' text-gray-500'><ModalDelete id={body?.id}/></button>
-                                  
+                                   <ModalBrand title="put" id={body?.id} data={body}/>
                               </div>
                               : heder.value == "t/r" ? <p>{index + 1 }</p>
                               : (body[heder.value])

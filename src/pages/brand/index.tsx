@@ -27,7 +27,7 @@ function index() {
   return <>
     <ToastContainer />
     <div className="py-3">
-      <ModalBrand />
+      <ModalBrand title="post"/>
     </div>
     <GlobalTable heders={theder} body={dataBrands} skelatonLoader={isLoader}/>
   </>

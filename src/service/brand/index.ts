@@ -9,7 +9,7 @@ export interface postData{
 }
 
 export interface UpdateData{
-    id:number;
+    id:number|undefined;
     putData: postData;
 }
 

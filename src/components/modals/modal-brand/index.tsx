@@ -5,8 +5,11 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, TextField } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+
 import useBrandStore from "@store-brand";
 import {postData} from "@brand"
+
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,8 +23,14 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
-  const { postBrand } = useBrandStore();
+interface propsData{
+  title: string;
+  id?: number;
+  data?: any;
+}
+
+export default function BasicModal({title , id , data}:propsData) {
+  const { postBrand , updateBrand} = useBrandStore();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -38,21 +47,32 @@ export default function BasicModal() {
   });
 
   const initialValues: postData = {
-    brand_name: "",
-    brand_description: "" ,
-    position: "" ,
-    image:""  
+    brand_name: data?.brand_name || "",
+    brand_description: data?.brand_description || "" ,
+    position: data?.position || "" ,
+    image: data?.image || ""  
   };
 
   const handelSubmit = async (value:postData ) => {
-    const status = await postBrand(value);
-
-    if (status === 201) {
+    if(!id){
+      const status = await postBrand(value);
+      if (status === 201) {
       toast.success("success full");
       handleClose();
-    } else {
-      toast.error("Error :" + status);
+      } else {
+       toast.error("Error :" + status);
+       handleClose();
+      }
+    }else{
+      const updateData= {id:id, putData : value}
+      const status = await updateBrand(updateData);
+      if (status === 200) {
+      toast.success("update success full"); 
       handleClose();
+      } else {
+       toast.error("Error :" + status);
+       handleClose();
+      }
     }
   };
 
@@ -60,12 +80,24 @@ export default function BasicModal() {
 
   return (
     <div>
-      <button
+      {
+        title == "post" ? 
+        <button
         onClick={handleOpen}
         className="py-2 px-6 text-white font-semibold bg-[#D52200] hover:bg-[#9c4837] active:bg-[#D52200] duration-200 rounded-lg"
       >
         To add
-      </button>
+      </button> : 
+      <Button
+        color="inherit"
+        onClick={handleOpen}
+        sx={{ 
+          color: '#767676' // HEX formatida rang
+        }}
+      >
+        <EditIcon  />
+      </Button>
+      }
       <Modal
         open={open}
         onClose={handleClose}
@@ -80,7 +112,9 @@ export default function BasicModal() {
           >
             <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">
               <h1 className="text-center mb-2 text-[26px] font-bold">
-                Add a brand
+                {
+                  title == "post"? "Add a brand" : "Edit a brand"
+                }
               </h1>
               <Field
                 as={TextField}

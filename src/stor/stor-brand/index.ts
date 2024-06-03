@@ -54,7 +54,7 @@ const useBrandStore = create <StoreBrand> ((set)=>({
         try{
         const respons = await brand.update(data)
         if(respons?.status ===200){
-            set((state)=>({dataBrands: state.dataBrands.map((el:any)=>el.id === data?.id ? data : el)}))
+            set((state)=>({dataBrands: state.dataBrands.map((el:any)=>el.id === data?.id ? data.putData : el)}))
             return respons?.status
         }
         

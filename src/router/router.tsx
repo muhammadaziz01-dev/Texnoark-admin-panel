@@ -20,7 +20,6 @@ const index = ()=>{
                 {/* <Route path="products" element={<Products />} />
                 <Route path="products/:id" element={<ProductId />} />
                 <Route path="workers" element={<Users />} /> */}
-                <Route path="*" element={<Arror />} />
             </Route>  
             <Route path="*" element={<Arror />} />
             
