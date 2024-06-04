@@ -28,8 +28,8 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
       try{
           const staus = await deleteBrand(id)
         if(staus === 200){
-          toast.success("Brand deleted successfully")
           handleClose()
+          toast.success("Brand deleted successfully")
         } 
       }catch(err:any){
           toast.error("Error " + err?.message)
@@ -39,8 +39,8 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
       try{
           const staus = await deleteDataCategory(id)
         if(staus === 200){
-          toast.success("Category deleted successfully")
           handleClose()
+          toast.success("Category deleted successfully")
         } 
       }catch(err:any){
           toast.error("Error " + err?.message)

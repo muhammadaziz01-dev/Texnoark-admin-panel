@@ -130,7 +130,7 @@ export default function BasicModal({title , id , data}:propsData) {
               />
               
               <Button
-                sx={{ fontSize: "16px", fontWeight: "600" }}
+                sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
                 variant="contained"
                 type="submit"
                 className="w-[100%] py-3"
