@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 
 import App from "../App";
-import {Auth, Arror, Category , Brand} from "@pages"
+import {Auth, Arror, Category,SubCategory , Brand} from "@pages"
 import {HomeLayout} from "@layut"
 
 const index = ()=>{
@@ -16,10 +16,8 @@ const index = ()=>{
             <Route index element={<Auth />} />
             <Route path="/home/*" element={<HomeLayout />} >
                 <Route index element={<Category />} />
+                <Route path="category/:subcategory" element={<SubCategory /> } /> 
                 <Route path="brands" element={<Brand />} />
-                {/* <Route path="products" element={<Products />} />
-                <Route path="products/:id" element={<ProductId />} />
-                <Route path="workers" element={<Users />} /> */}
             </Route>  
             <Route path="*" element={<Arror />} />
             
