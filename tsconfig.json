@@ -38,7 +38,7 @@
 
 
 
-            "@store-category": ["./src/stor/stor-category"],
+            "@stor-category": ["./src/stor/stor-category"],
             "@store-brand": ["./src/stor/stor-brand"],
 
             

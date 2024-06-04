@@ -6,8 +6,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { toast  } from 'react-toastify';
 
 import useBrandStore from '@store-brand';
+import useCategoryStore from '@stor-category';
 
-export default function FadeMenu({id}:{id:number}) {
+export default function FadeMenu({id , title}:{id:number , title : string}) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -18,20 +19,34 @@ export default function FadeMenu({id}:{id:number}) {
   };
 
   // my function start ----------------------
- const {deleteBrand} = useBrandStore()
+ const {deleteBrand} = useBrandStore();
+ const {deleteDataCategory} = useCategoryStore()
 
+  
   const deleteData = async() => {
-    try{
-        const staus = await deleteBrand(id)
-      if(staus === 200){
-        toast.success("Brand deleted successfully")
-        handleClose()
-      } 
-    }catch(err:any){
-        toast.error("Error " + err?.message)
-        console.log(err);
+    if(title == "brand"){
+      try{
+          const staus = await deleteBrand(id)
+        if(staus === 200){
+          toast.success("Brand deleted successfully")
+          handleClose()
+        } 
+      }catch(err:any){
+          toast.error("Error " + err?.message)
+          console.log(err);
+      }
+    }else if (title == "category"){
+      try{
+          const staus = await deleteDataCategory(id)
+        if(staus === 200){
+          toast.success("Category deleted successfully")
+          handleClose()
+        } 
+      }catch(err:any){
+          toast.error("Error " + err?.message)
+          console.log(err);
+      }
     }
-    
   }
 
   // my function end ----------------------

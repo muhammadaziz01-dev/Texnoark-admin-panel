@@ -1,37 +1,36 @@
 import request from "../config"
 
-// ----------------> Instance Services <-------------------------------------
-export interface postData{
-    category_name: string;
+// ----------------> Instance Services Category<-------------------------------------
+export interface postCategory{
+    category_name: string,
+    parent_category_id?: number | null ,
+    positon?: number | null
 }
 
-export interface UpdateData extends postData{
-    category_id:string;
+export interface UpdateCategory {
+    id:number;
+    updateData : postCategory
 }
 
-interface getParams{
-    page:number;
-    limit:number;
-}
 
 
 
 interface Category{
-    post : (data:postData)=> any,
-    delete : (id:string)=> any,
-    get : (params:getParams)=> any,
-    update : (data:UpdateData)=> any,
+    getCatigory : ()=> any,
+    postCatigory : (data:postCategory)=> any,
+    deleteCategory : (id:number)=> any,
+    updateCategory : (data:UpdateCategory)=> any,
 }
 
 // ---------> Interface Srore Category <--------------------
 export interface StoreCategory {
     isLoader:boolean;
-    data:any[];
+    dataCategory:any[];
     totlCount:number;
-    getData: (params:getParams)=> Promise <any>;
-    postData: (data:postData)=> Promise <any>;
-    deleteData: (id:string)=> Promise <any>;
-    updateData: (data:UpdateData)=> Promise <any>;
+    getDataCategory: ()=> Promise <any>;
+    postDatacategory: (data:postCategory)=> Promise <any>;
+    deleteDataCategory: (id:number)=> Promise <any>;
+    updateDataCategory: (data:UpdateCategory)=> Promise <any>;
 }
 
 
@@ -39,8 +38,8 @@ export interface StoreCategory {
 
 // ----------------> Instance Category <----------------------------
 export const category:Category = {
-    post: (data)=> request.post("/category" , data),
-    delete: (id)=> request.delete(`/category/${id}`),
-    get: (params)=> request.get(`/categories?page=${params.page}&limit=${params.limit}`),
-    update: (data)=> request.put(`/category`, data)
+    getCatigory: ()=> request.get(`/api/category/get-all-category/q`),
+    postCatigory: (data)=> request.post("/api/category/create" , data),
+    deleteCategory: (id)=> request.delete(`/api/category/delete/${id}`),
+    updateCategory: (data)=> request.put(`/api/category/update/${data.id}`, data.updateData)
 }

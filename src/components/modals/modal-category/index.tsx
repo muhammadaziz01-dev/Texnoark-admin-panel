@@ -7,9 +7,8 @@ import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 
-import useBrandStore from "@store-brand";
-import {postData} from "@brand"
-import {brandValidationSchema} from "@validations"
+import useCategoryStore from "@stor-category";
+import {postCategory} from "@category"
 
 
 const style = {
@@ -31,24 +30,29 @@ interface propsData{
 }
 
 export default function BasicModal({title , id , data}:propsData) {
-  const { postBrand , updateBrand} = useBrandStore();
+  const { postDatacategory , updateDataCategory } = useCategoryStore();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   /// my code start <-----------------------------
+ 
 
-  const initialValues: postData = {
-    brand_name: data?.brand_name || "",
-    brand_description: data?.brand_description || "" ,
-    position: data?.position || "" ,
-    image: data?.image || ""  
+  const validationSchema = Yup.object().shape({
+    category_name: Yup.string().required("Name is required"),
+    // parent_category_id: Yup.number().min(0, "must be at least greater than 0"),
+    // position: Yup.number().min(0, "must be at least greater than 0"),
+  });
+
+  const initialValues: postCategory = {
+    category_name: data?.category_name || "", 
   };
 
-  const handelSubmit = async (value:postData ) => {
+  const handelSubmit = async (value:postCategory ) => {
+    const postValue = { category_name: value.category_name , parent_category_id:null , positon: null}
     if(!id){
-      const status = await postBrand(value);
+      const status = await postDatacategory(postValue);
       if (status === 201) {
       toast.success("success full");
       handleClose();
@@ -57,8 +61,8 @@ export default function BasicModal({title , id , data}:propsData) {
        handleClose();
       }
     }else{
-      const updateData= {id:id, putData : value}
-      const status = await updateBrand(updateData);
+      const updateData= {id:id, updateData : postValue}
+      const status = await updateDataCategory(updateData);
       if (status === 200) {
       toast.success("update success full"); 
       handleClose();
@@ -100,72 +104,25 @@ export default function BasicModal({title , id , data}:propsData) {
         <Box sx={style}>
           <Formik
             initialValues={initialValues}
-            validationSchema={brandValidationSchema}
+            validationSchema={validationSchema}
             onSubmit={handelSubmit}
           >
             <Form className=" max-w-[600px]  w-full flex flex-col gap-[12px]">
               <h1 className="text-center mb-2 text-[26px] font-bold">
                 {
-                  title == "post"? "Add a brand" : "Edit a brand"
+                  title == "post"? "Add a category" : "Edit a category"
                 }
               </h1>
               <Field
                 as={TextField}
-                label="Brand name"
+                label="Category name"
                 sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                 type="text"
-                name="brand_name"
+                name="category_name"
                 className=" w-[100%]  mb-3 outline-none py-0"
                 helperText={
                   <ErrorMessage
-                     name="brand_name"
-                     component="p"
-                     className="mb-3 text-red-500 text-center"
-                  />
-                }
-              />
-              <Field
-                as={TextField}
-                label="Brand description"
-                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                type="text"
-                name="brand_description"
-                className=" w-[100%]  mb-3 outline-none py-0"
-                helperText={
-                  <ErrorMessage
-                     name="brand_description"
-                     component="p"
-                     className="mb-3 text-red-500 text-center"
-                  />
-                }
-              />
-
-              <Field
-                as={TextField}
-                label="Position"
-                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                type="number"
-                name="position"
-                className=" w-[100%]  mb-3 outline-none py-0"
-                helperText={
-                  <ErrorMessage
-                     name="position"
-                     component="p"
-                     className="mb-3 text-red-500 text-center"
-                  />
-                }
-              />
-
-              <Field
-                as={TextField}
-                label="Image URL"
-                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                type="text"
-                name="image"
-                className=" w-[100%]  mb-3 outline-none py-0"
-                helperText={
-                  <ErrorMessage
-                     name="image"
+                     name="category_name"
                      component="p"
                      className="mb-3 text-red-500 text-center"
                   />
