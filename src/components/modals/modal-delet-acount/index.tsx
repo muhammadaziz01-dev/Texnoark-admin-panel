@@ -1,15 +1,14 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
-import DeleteIcon from "@mui/icons-material/Delete";
 import { toast  } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-import useBrandStore from '@store-brand';
-import useCategoryStore from '@stor-category';
+import {auth} from "@service-auth";
+import {removeCookiesAll} from "@coocse";
 
 
-export default function FadeMenu({id , title}:{id:number , title : string}) {
+export default function FadeMenu({id}: {id: number}) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -20,64 +19,55 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
   };
 
   // my function start ----------------------
- const {deleteBrand} = useBrandStore();
- const {deleteDataCategory} = useCategoryStore()
 
   
+  const navigate = useNavigate();
+
   const deleteData = async() => {
-    if(title == "brand"){
-      try{
-          const staus = await deleteBrand(id)
-        if(staus === 200){
-          handleClose()
-          toast.success("Brand deleted successfully")
-        } 
-      }catch(err:any){
-          toast.error("Error " + err?.message)
-          console.log(err);
-      }
-    }else if (title == "category"){
-      try{
-          const staus = await deleteDataCategory(id)
-        if(staus === 200){
-          handleClose()
-          toast.success("Category deleted successfully")
-        } 
-      }catch(err:any){
-          toast.error("Error " + err?.message)
-          console.log(err);
-      }
+    try{
+        const respons = await auth.deleteAdminId(id);
+        if(respons.status === 200){
+            toast.success("Admin removed successfully")
+            removeCookiesAll(["access_token", "refresh_token", "admin_id", "admin_activation_link"]);
+            handleClose()
+            navigate("/")
+        }
+    }catch(err){
+        toast.error("Something went wrong");
+        handleClose()
     }
+     
   }
 
   // my function end ----------------------
 
   return (
     <div>
-      <Button
+      <button
         id="fade-button"
         aria-controls={open ? 'fade-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         color="inherit"
+        className="py-2 px-5 rounded-md bg-red-500 text-white font-medium hover:bg-red-700 duration-300 active:bg-red-500"
         
       >
-        <DeleteIcon/>
-      </Button>
+        delete
+      </button>
       <Menu
         id="fade-menu"
         MenuListProps={{
           'aria-labelledby': 'fade-button',
         }}
+        sx={{marginTop: 1}}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         TransitionComponent={Fade}
-        sx={{marginTop: 1}}
       >
         <div className='px-4 py-2'>
-            <h3 className=''>Are you sure you want to delete?</h3>
+            <h3 className=''>Sir, do you want to delete your account ?</h3>
             <div className='flex items-center justify-end gap-3 mt-2'>
                 <button onClick={handleClose} className='py-1 px-2 rounded-md bg-[#D52200] text-white'>No</button>
                 <button onClick={deleteData} className='py-1 px-2 rounded-md bg-[#D52200] text-white'>Yes</button>

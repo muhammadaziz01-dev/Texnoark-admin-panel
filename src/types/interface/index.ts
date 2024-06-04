@@ -22,7 +22,7 @@ export interface Request{
     signup:(data:Signup)=>any,
     logout: () => void;
     getAdminId: (id:number) => any;
-    deleteAdminId: (id:number) => void;
+    deleteAdminId: (id:number) => any;
     updateAdminId: (data:AdminUpdate) => any;
 }
 
