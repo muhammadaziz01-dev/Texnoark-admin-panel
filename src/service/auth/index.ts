@@ -1,9 +1,11 @@
 import  request  from "../config";
 import { Request } from "@interface";
 
+
 const auth:Request={
-    signin: (data)=> request.post("/api/admin/login",data),
-    signup: (data)=> request.post("/api/admin/create",data),
+    signin: (data)=> request.post("/auth/sign-in",data),
+    signup: (data)=> request.post("/auth/admin/sign-up",data),
+    
     logout: ()=> request.post("/api/admin/logout"),
     getAdminId: (id)=> request.get(`/api/admin/${id}`),
     deleteAdminId: (id)=> request.delete(`/api/admin/${id}`),
