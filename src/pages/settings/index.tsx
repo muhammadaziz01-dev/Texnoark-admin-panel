@@ -1,12 +1,14 @@
 import { useEffect , useState } from "react"
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import {auth} from "@service-auth";
 import{getCookies } from "@coocse"
-import {ModalDeleteAcount} from "@modals"
+import {ModalDeleteAcount} from "@modals";
+import {removeCookiesAll } from "@coocse";
 
 function index() {
-
+     const navigate = useNavigate();
     const [adminData, setAdminData] = useState<any>({});
     const adminId = Number(getCookies("admin_id"));
 
@@ -31,6 +33,14 @@ useEffect(()=>{
 
  //=-=-=-=-=-=-=-=-=-=-=---=--=-=-=-=-=-=-=-=-=
 
+
+ // function addAccount <-------------------
+
+ const addAccount = () => {
+    removeCookiesAll(["acssess_token", "refresh_token" , "admin_id" , "admin_activation_link"]);
+    navigate("/")
+ }
+ //=-=-=-=-=-=-=-=-=-=-=---=--=-=-=-=-=-=-=-=-=
 
 
   return <>
@@ -71,6 +81,7 @@ useEffect(()=>{
                 <div className="flex items-center gap-4">
                     <button className="py-2 px-5 rounded-md bg-[#D55200] text-white font-medium hover:bg-[rgb(213,110,0)] duration-300 active:bg-[#D55200]">update</button>
                     <ModalDeleteAcount id={adminId}/>
+                    <button onClick={addAccount} className="py-2 px-5 rounded-md bg-[#D55200] text-white font-medium hover:bg-[rgb(213,110,0)] duration-300 active:bg-[#D55200]">+ add acount</button>
                 </div>
             </div>
         </div>
