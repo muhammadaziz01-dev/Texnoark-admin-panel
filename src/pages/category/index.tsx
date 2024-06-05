@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 import {ModalCategory} from "@modals"
@@ -9,17 +9,18 @@ import useCategoryStore from "@stor-category"
 
 function index() {
 
+const [dataGet , setDataGet] = useState({limit: 10, page:1})
 const {getDataCategory , dataCategory , isLoader} =  useCategoryStore();
 
 useEffect(() =>{
-  getDataCategory();
+  getDataCategory(dataGet);
 },[]);
 
 
  // Props Global teble -------------->
  const theder = [
   {title: "S/N" , value:"t/r"},
-  {title: "Category" , value:"category_name"},
+  {title: "Category" , value:"name"},
   {title: "Action" , value:"action2"}
 ]
   return <>

@@ -2,9 +2,8 @@ import request from "../config"
 
 // ----------------> Instance Services Category<-------------------------------------
 export interface postCategory{
-    category_name: string,
-    parent_category_id?: number | null ,
-    positon?: number | null
+    name: string,
+    parent_category_id?: number 
 }
 
 export interface UpdateCategory {
@@ -12,16 +11,22 @@ export interface UpdateCategory {
     updateData : postCategory
 }
 
+export interface GetCategory{
+    page:number;
+    limit:number;
+}
+
 
 
 
 interface Category{
-    getCatigory : ()=> any,
+    getCatigory : (data:GetCategory)=> any,
     postCatigory : (data:postCategory)=> any,
     deleteCategory : (id:number)=> any,
     updateCategory : (data:UpdateCategory)=> any,
 
-    getSubCategoryId: (id:number)=> any,
+
+    // getSubCategoryId: (id:number)=> any,
 }
 
 // ---------> Interface Srore Category <--------------------
@@ -31,11 +36,12 @@ export interface StoreCategory {
     dataSubCategory:any[];
     totlCount:number;
     subCategoryCount:number;
-    getDataCategory: ()=> Promise <any>;
-    postDatacategory: (data:postCategory)=> Promise <any>;
+    getDataCategory: (data:GetCategory)=> Promise <any>;
     deleteDataCategory: (id:number)=> Promise <any>;
+    postDatacategory: (data:postCategory)=> Promise <any>;
     updateDataCategory: (data:UpdateCategory)=> Promise <any>;
-    getDataSubCategoryId: (id:number)=> Promise <any>;
+
+    // getDataSubCategoryId: (id:number)=> Promise <any>;
 }
 
 
@@ -43,10 +49,11 @@ export interface StoreCategory {
 
 // ----------------> Instance Category <----------------------------
 export const category:Category = {
-    getCatigory: ()=> request.get(`/api/category/get-all-category/q`),
-    postCatigory: (data)=> request.post("/api/category/create" , data),
-    deleteCategory: (id)=> request.delete(`/api/category/delete/${id}`),
-    updateCategory: (data)=> request.put(`/api/category/update/${data.id}`, data.updateData),
+    getCatigory: (data)=> request.get(`/category?limit=${data.limit}&page=${data.page}`),
+    deleteCategory: (id)=> request.delete(`/category/${id}`),
+    postCatigory: (data)=> request.post("/category" , data),
+    updateCategory: (data)=> request.patch(`/category/${data.id}`, data.updateData),
 
-    getSubCategoryId: (id)=> request.get(`/api/category/get-all-subcategory/${id}/q`)
+
+    // getSubCategoryId: (id)=> request.get(`/api/category/get-all-subcategory/${id}/q`)
 }

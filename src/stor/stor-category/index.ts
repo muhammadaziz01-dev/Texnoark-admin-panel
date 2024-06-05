@@ -10,14 +10,14 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
     dataSubCategory:[],
     totlCount: 0,
     subCategoryCount:0,
-    getDataCategory : async()=>{
+    getDataCategory : async(data)=>{
         try{
            set({isLoader: true})
-           const respons = await category.getCatigory()
+           const respons = await category.getCatigory(data)
         //    console.log(respons)
            if(respons.status === 200){
-               set({dataCategory: respons?.data?.categories});
-               set({totlCount: respons?.data?.count})
+               set({dataCategory: respons?.data?.data});
+            //    set({totlCount: respons?.data?.count})
            }
            set({isLoader: false})
        }catch(error){
@@ -27,13 +27,13 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
        
     },
     postDatacategory: async(data)=>{
-        if(!data.parent_category_id){
+        if(data.parent_category_id == 0){
             try{
                 const respons = await category.postCatigory(data)
              //    console.log(respons)
                 if(respons.status === 201){
-                    set((state)=>({dataCategory: [...state.dataCategory, respons?.data?.category]})) 
-                    set((state)=>({totlCount: state.totlCount += 1}))
+                    set((state)=>({dataCategory: [...state.dataCategory, respons?.data?.data]})) 
+                    // set((state)=>({totlCount: state.totlCount += 1}))
                     return respons?.status
                 }
              }catch(error){
@@ -94,22 +94,24 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
         }
     },
 
-    getDataSubCategoryId: async(id)=>{
-        try{
-            set({isLoader: true})
-           const respons = await category.getSubCategoryId(id)
-        //    console.log(respons)
-           if(respons.status === 200){
-               set({dataSubCategory: respons?.data?.categories});
-               set({subCategoryCount: respons?.data?.count})
-           }
-           set({isLoader: false})
-       }catch(error){
-        console.log(error)
-        set({isLoader: false})
-       }
+    
+
+    // getDataSubCategoryId: async(id)=>{
+    //     try{
+    //         set({isLoader: true})
+    //        const respons = await category.getSubCategoryId(id)
+    //     //    console.log(respons)
+    //        if(respons.status === 200){
+    //            set({dataSubCategory: respons?.data?.categories});
+    //            set({subCategoryCount: respons?.data?.count})
+    //        }
+    //        set({isLoader: false})
+    //    }catch(error){
+    //     console.log(error)
+    //     set({isLoader: false})
+    //    }
        
-    }
+    // }
 
 }))
 

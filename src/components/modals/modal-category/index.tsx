@@ -40,17 +40,17 @@ export default function BasicModal({title , id , data}:propsData) {
  
 
   const validationSchema = Yup.object().shape({
-    category_name: Yup.string().required("Name is required"),
+    name: Yup.string().required("Name is required"),
     // parent_category_id: Yup.number().min(0, "must be at least greater than 0"),
     // position: Yup.number().min(0, "must be at least greater than 0"),
   });
 
   const initialValues: postCategory = {
-    category_name: data?.category_name || "", 
+    name: data?.name || "", 
   };
 
   const handelSubmit = async (value:postCategory ) => {
-    const postValue = { category_name: value.category_name , parent_category_id:null , positon: null}
+    const postValue = { name: value.name , parent_category_id:0 }
     if(!id){
       const status = await postDatacategory(postValue);
       if (status === 201) {
@@ -118,11 +118,11 @@ export default function BasicModal({title , id , data}:propsData) {
                 label="Category name"
                 sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                 type="text"
-                name="category_name"
+                name="name"
                 className=" w-[100%]  mb-3 outline-none py-0"
                 helperText={
                   <ErrorMessage
-                     name="category_name"
+                     name="name"
                      component="p"
                      className="mb-3 text-red-500 text-center"
                   />
