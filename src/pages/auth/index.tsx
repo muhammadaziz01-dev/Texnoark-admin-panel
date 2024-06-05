@@ -74,15 +74,17 @@ const StyledTextField = styled(TextField)(({  }) => ({
   }
 
   const signIn = async(values:any)=>{
-    // console.log(values);
+    const phone = values.PhoneNumber.replace(/\D/g, "");
+    const usrData = {...values , PhoneNumber: `+${phone}`};
+    // console.log(usrData);
+    
     try{
-      const res = await auth.signin(values);
-      if(res.status === 201){
-        setCookies("access_token", res?.data?.tokens?.access_token);
-        setCookies("refresh_token", res?.data?.tokens?.refresh_token);
-        setCookies("admin_id", res?.data?.admin?.id);
-        setCookies("admin_activation_link", res?.data?.admin?.activation_link);
-        toast.success("Login successfully")
+      const res = await auth.signin(usrData);
+      if(res.status === 200){
+        setCookies("access_token", res?.data?.data?.token);
+        setCookies("admin_data", res?.data?.data?.admin);
+
+        // setCookies("refresh_token", res?.data?.tokens?.refresh_token);
         setTimeout(()=>{
             navigate("/home");
         }, 1000)
@@ -218,7 +220,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
           </div>
           <div className="form-container sign-in">
             <Formik
-              initialValues={{ email: "", password: "" }}
+              initialValues={{ PhoneNumber: "", password: "" }}
               validationSchema={signInValidationSchema}
               onSubmit={signIn}
             >
@@ -226,19 +228,16 @@ const StyledTextField = styled(TextField)(({  }) => ({
               <Form className="w-full flex flex-col gap-[15px]">
                 <h2 className=" text-center text-[#D55200] text-[22px] font-semibold">login</h2>
                 <Field
-                  as={StyledTextField}
-                  label="Email"
-                  sx={{ "& input": { color: "#000", fontSize: "20px" } }}
-                  type="email"
-                  name="email"
-                  error={touched.email && !!errors.email}
-                  className="w-[100%] mb-3 outline-none py-0"
-                  helperText={
-                    <ErrorMessage
-                    name="email"
-                    component="p"
-                    className="mb-3 text-red-500 text-center"/>
-                  }
+                 as={TextField}
+                 label="Telafono"
+                 type="tel"
+                 inputRef={inputRef}
+                 name="PhoneNumber"
+                 error={touched.phone_number && !!errors.phone_number}
+                 className="w-full mb-1 outline-none"
+                 helperText={
+                    <ErrorMessage name="PhoneNumber" component="p" className="mb-1 text-red-500 text-center" />
+                 }
                 />
 
                 <p
