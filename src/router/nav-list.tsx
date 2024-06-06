@@ -4,6 +4,7 @@ import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import SettingsIcon from '@mui/icons-material/Settings';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 
 interface navListInterface {
     path: string,
@@ -22,6 +23,11 @@ const navList:navListInterface[] = [
         path:"/home/brands"  ,
         title:"Brands",
         icon: <MilitaryTechIcon />,
+    },
+    {
+        path:"/home/brand-catigory"  ,
+        title:"Brand-Catigory",
+        icon: <DynamicFeedIcon />,
     },
     {
         path:"/home/models"  ,

@@ -8,8 +8,9 @@ import useBrandStore from "@store-brand";
 import {GlobalTable} from "@ui";
 import {ModalBrand} from "@modals"
 function index() {
+  const [ search ] = useState("")
   const {getBrand , dataBrands , isLoader} = useBrandStore();
-  const [ params , ] = useState({limit: 10, page:1})
+  const [ params , ] = useState({limit: 10, page:1 , search:search})
   
   // -> Function getBrand -------------->
   useEffect(() => {

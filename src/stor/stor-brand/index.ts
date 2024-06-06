@@ -17,8 +17,8 @@ const useBrandStore = create <StoreBrand> ((set)=>({
            const respons = await brand.get(data)
         //    console.log(respons)
            if(respons.status === 200){
-               set({dataBrands: respons?.data?.data});
-            //    set({totlCount: respons?.data?.count})
+               set({dataBrands: respons?.data?.data?.brands});
+               set({totlCount: respons?.data?.data?.count})
            }
            set({isLoader: false})
        }catch(error){
@@ -37,8 +37,7 @@ const useBrandStore = create <StoreBrand> ((set)=>({
             getCookies("acsses_token");
             console.log(response);
             if (response.status === 201) {
-                set((state) => ({ dataBrands: [...state.dataBrands, { ...data, product_id: response?.data?.id }] }));
-                toast.success("Successfully added");
+                set((state) => ({ dataBrands: [...state.dataBrands, response?.data?.data] }));
                 return response?.status;
             }
         } catch (error) {
@@ -47,6 +46,8 @@ const useBrandStore = create <StoreBrand> ((set)=>({
         }
 
     },
+
+
     deleteBrand: async(id)=>{
         try{
            const respons = await brand.delete(id)
@@ -64,7 +65,7 @@ const useBrandStore = create <StoreBrand> ((set)=>({
         try{
         const respons = await brand.update(data)
         if(respons?.status ===200){
-            set((state)=>({dataBrands: state.dataBrands.map((el:any)=>el.id === data?.id ? data.putData : el)}))
+            set((state)=>({dataBrands: state.dataBrands.map((el:any)=>el.id === data?.id ? {...data.putData , id:data?.id} : el)}))
             return respons?.status
         }
         

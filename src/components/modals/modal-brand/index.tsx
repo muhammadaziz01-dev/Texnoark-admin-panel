@@ -5,12 +5,13 @@ import { toast } from "react-toastify";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, MenuItem, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
-import { useEffect } from "react";
+import { useEffect ,  } from "react";
 
 import useBrandStore from "@store-brand";
 import useCategoryStore from "@stor-category";
 import { postData } from "@brand"
-import { brandValidationSchema } from "@validations"
+import { brandValidationSchema , brandValidationSchemaUpdet } from "@validations"
+import { Description } from "@mui/icons-material";
 
 const style = {
   position: "absolute" as "absolute",
@@ -31,7 +32,11 @@ interface PropsData {
 }
 
 export default function BasicModal({ title, id, data }: PropsData) {
-  const { postBrand,  } = useBrandStore(); //updateBrand
+
+  // const [search] = useState("")
+  console.log(data);
+  
+  const { postBrand, updateBrand } = useBrandStore(); //updateBrand
   const { getDataCategory, dataCategory } = useCategoryStore();
 
   const [open, setOpen] = React.useState(false);
@@ -39,15 +44,22 @@ export default function BasicModal({ title, id, data }: PropsData) {
   const handleClose = () => setOpen(false);
 
   useEffect(() => {
-    getDataCategory({ limit: 100, page:1 });
+    getDataCategory({search:""});
   }, []);
 
   const initialValues: postData = {
-    name: data?.brand_name || "",
-    description: data?.brand_description || "",
-    category_id: data?.position || "",
+    name:  "",
+    description:  "",
+    category_id:  "",
     file: undefined,
   };
+
+  const initialValuesUpdet: postData = {
+    name: data?.name || "",
+    description: data?.description || "",
+    categoryId: data?.category_id || "",
+  };
+  
 
   const handleSubmit = async (values: postData) => {
     const formData = new FormData();
@@ -62,8 +74,8 @@ export default function BasicModal({ title, id, data }: PropsData) {
     if (!id) {
       status = await postBrand(formData);
     } else {
-      // const updateData = { id: id, putData: formData };
-      // status = await updateBrand(updateData);
+      const putData ={id:id , putData: {name:values?.name , description:values?.description , category_id:values?.category_id} }
+      status = await updateBrand(putData);
     }
 
     if (status === 201 || status === 200) {
@@ -101,8 +113,8 @@ export default function BasicModal({ title, id, data }: PropsData) {
       >
         <Box sx={style}>
           <Formik
-            initialValues={initialValues}
-            validationSchema={brandValidationSchema}
+            initialValues={id ? initialValuesUpdet: initialValues}
+            validationSchema={id ? brandValidationSchemaUpdet : brandValidationSchema}
             onSubmit={handleSubmit}
           >
             {({ setFieldValue }) => (
@@ -141,7 +153,7 @@ export default function BasicModal({ title, id, data }: PropsData) {
                   }
                 />
                 <Field
-                  name="category_id"
+                  name={id ? "categoryId" : "category_id"}
                   type="text"
                   as={TextField}
                   label="Category"
@@ -152,7 +164,7 @@ export default function BasicModal({ title, id, data }: PropsData) {
                   fullWidth
                   helperText={
                     <ErrorMessage
-                      name="category_id"
+                      name={id ? "categoryId" : "category_id"}
                       component="p"
                       className="text-[red] text-[15px]"
                     />
@@ -164,7 +176,9 @@ export default function BasicModal({ title, id, data }: PropsData) {
                     </MenuItem>
                   ))}
                 </Field>
-                <input
+                {
+                  id ? "" : <div>
+                    <input
                   type="file"
                   name="file"
                   className="w-[100%] mb-3 outline-none py-0"
@@ -177,6 +191,8 @@ export default function BasicModal({ title, id, data }: PropsData) {
                   component="div"
                   className="mb-3 text-red-500 text-center"
                 />
+                  </div>
+                }
                 <Button
                   sx={{ fontSize: "16px", fontWeight: "600", backgroundColor: "#D55200", "&:hover": { background: "#D52200" } }}
                   variant="contained"

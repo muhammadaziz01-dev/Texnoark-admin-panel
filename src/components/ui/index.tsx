@@ -1,4 +1,5 @@
 import AccountMenu from "./menu";
 import GlobalTable from "./global-teble";
-
-export {AccountMenu , GlobalTable}
+import GlobalPogination from "./global-pagination";
+import GlobalSearch from "./global-search";
+export {AccountMenu , GlobalTable , GlobalPogination , GlobalSearch}

@@ -67,6 +67,7 @@ export default function ResponsiveDrawer(props: Props) {
 
   const getCategoryName = (pathname:any) => {
     if (pathname === "/home/brands") return "Brands";
+    if (pathname === "/home/brand-catigory") return "Brand Category";
     if (pathname === "/home/models") return "Models";
     if (pathname === "/home/sales") return "Sales";
     if (pathname === "/home/settings") return "Settings";

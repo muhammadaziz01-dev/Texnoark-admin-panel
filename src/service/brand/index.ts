@@ -4,7 +4,8 @@ import request from "../config"
 export interface postData{
     name: string;
     description: string;
-    category_id:any;
+    category_id?:any;
+    categoryId?:any;
     file?:any;
 }
 
@@ -14,16 +15,17 @@ export interface UpdateData{
 }
 
 export interface getBrand{
-    page:number;
-    limit:number;
+    search?: string;
+    page?:number;
+    limit?:number;
 }
 
 
 interface Brand{
     get : (data:getBrand)=> any,
-    
     post : (data:any)=> any,
     delete : (id:number)=> any,
+
     update : (data:UpdateData)=> any,
 }
 
@@ -33,9 +35,9 @@ export interface StoreBrand {
     dataBrands:any[];
     totlCount:number;
     getBrand: (data:getBrand)=> Promise <any>;
-
     postBrand: (data:any)=> Promise <any>;
     deleteBrand: (id:number)=> Promise <any>;
+
     updateBrand: (data:UpdateData)=> Promise <any>;
 }
 
@@ -44,9 +46,9 @@ export interface StoreBrand {
 
 // ----------------> Instance Brand <----------------------------
 export const brand:Brand = {
-    get: (data)=> request.get(`/brand?limit=${data.limit}&page=${data.page}`),
-    
+    get: (data)=> request.get(`/brand/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
     post: (data)=> request.post("/brand" , data),
-    delete: (id)=> request.delete(`/api/brand/delete/${id}`),
-    update: (data)=> request.put(`/api/brand/update/${data.id}`, data.putData)
+    delete: (id)=> request.delete(`/brand/${id}`),
+    
+    update: (data)=> request.patch(`/brand/${data.id}`, data.putData)
 }
