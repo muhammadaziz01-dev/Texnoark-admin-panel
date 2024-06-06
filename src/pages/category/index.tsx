@@ -18,6 +18,20 @@ useEffect(() =>{
   getDataCategory(parms);
 },[parms , change]);
 
+useEffect(()=>{
+  const params = new URLSearchParams(location.search);
+  const page = params.get("page");
+  const search = params.get("search");
+  const searchString =  search ? search  : ""
+  const pageNuber = page ? parseInt(page): 1;
+  setParams(preParams=>({
+     ...preParams,
+      page:pageNuber,
+      search:searchString
+  }));
+  setChange(searchString)
+  
+},[location.search]);
 
  // Props Global teble -------------->
  const theder = [
