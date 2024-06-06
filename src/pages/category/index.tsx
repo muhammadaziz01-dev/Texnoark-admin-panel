@@ -8,7 +8,7 @@ import useCategoryStore from "@stor-category"
 
 
 function index() {
-const [search , setSearch ] = useState("")
+const [search , ] = useState("")
 const [dataGet ,] = useState({limit: 10, page:1 , search:search})
 const {getDataCategory , dataCategory , isLoader} =  useCategoryStore();
 
