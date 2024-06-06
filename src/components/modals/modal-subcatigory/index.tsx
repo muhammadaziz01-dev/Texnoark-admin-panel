@@ -49,7 +49,7 @@ export default function BasicModal({title , id , data}:propsData) {
 
   const initialValues: postCategory = {
     name: data?.category_name || "", 
-    parent_category_id: data?.category_id || "",
+    // parent_category_id: data?.category_id || "",
   };
 
   const handelSubmit = async (value:postCategory ) => {

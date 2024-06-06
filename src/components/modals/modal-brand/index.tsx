@@ -11,7 +11,6 @@ import useBrandStore from "@store-brand";
 import useCategoryStore from "@stor-category";
 import { postData } from "@brand"
 import { brandValidationSchema , brandValidationSchemaUpdet } from "@validations"
-import { Description } from "@mui/icons-material";
 
 const style = {
   position: "absolute" as "absolute",
