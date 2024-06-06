@@ -2,10 +2,10 @@ import request from "../config"
 
 // ----------------> Interface Services Brand <-------------------------------------
 export interface postData{
-    brand_name: string;
-    brand_description: string;
-    position:number|string;
-    image:string;
+    name: string;
+    description: string;
+    category_id:any;
+    file?:any;
 }
 
 export interface UpdateData{
@@ -13,11 +13,17 @@ export interface UpdateData{
     putData: postData;
 }
 
+export interface getBrand{
+    page:number;
+    limit:number;
+}
+
 
 interface Brand{
-    post : (data:postData)=> any,
+    get : (data:getBrand)=> any,
+    
+    post : (data:any)=> any,
     delete : (id:number)=> any,
-    get : ()=> any,
     update : (data:UpdateData)=> any,
 }
 
@@ -26,8 +32,9 @@ export interface StoreBrand {
     isLoader:boolean;
     dataBrands:any[];
     totlCount:number;
-    getBrand: ()=> Promise <any>;
-    postBrand: (data:postData)=> Promise <any>;
+    getBrand: (data:getBrand)=> Promise <any>;
+
+    postBrand: (data:any)=> Promise <any>;
     deleteBrand: (id:number)=> Promise <any>;
     updateBrand: (data:UpdateData)=> Promise <any>;
 }
@@ -37,8 +44,9 @@ export interface StoreBrand {
 
 // ----------------> Instance Brand <----------------------------
 export const brand:Brand = {
-    post: (data)=> request.post("/api/brand/create" , data),
+    get: (data)=> request.get(`/brand?limit=${data.limit}&page=${data.page}`),
+    
+    post: (data)=> request.post("/brand" , data),
     delete: (id)=> request.delete(`/api/brand/delete/${id}`),
-    get: ()=> request.get(`/api/brand/get-all/q`),
     update: (data)=> request.put(`/api/brand/update/${data.id}`, data.putData)
 }

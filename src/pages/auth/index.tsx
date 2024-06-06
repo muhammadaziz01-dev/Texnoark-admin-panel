@@ -19,6 +19,8 @@ const index = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const inputRef = useMask({mask: "+998 (__) ___-__-__",replacement: { _: /\d/ },});
+  const inputRef2 = useMask({mask: "+998 (__) ___-__-__",replacement: { _: /\d/ },});
+
 
 
 
@@ -74,8 +76,8 @@ const StyledTextField = styled(TextField)(({  }) => ({
   }
 
   const signIn = async(values:any)=>{
-    const phone = values.PhoneNumber.replace(/\D/g, "");
-    const usrData = {...values , PhoneNumber: `+${phone}`};
+    const phone = values.phone_number.replace(/\D/g, "");
+    const usrData = {...values , phone_number: `+${phone}`};
     // console.log(usrData);
     
     try{
@@ -85,6 +87,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
         setCookies("admin_data", res?.data?.data?.admin);
 
         // setCookies("refresh_token", res?.data?.tokens?.refresh_token);
+        toast.success("Sign in success")
         setTimeout(()=>{
             navigate("/home");
         }, 1000)
@@ -150,7 +153,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
                  as={TextField}
                  label="Telafono"
                  type="tel"
-                 inputRef={inputRef}
+                 inputRef={inputRef2}
                  name="phone_number"
                  error={touched.phone_number && !!errors.phone_number}
                  className="w-full mb-1 outline-none"
@@ -220,7 +223,7 @@ const StyledTextField = styled(TextField)(({  }) => ({
           </div>
           <div className="form-container sign-in">
             <Formik
-              initialValues={{ PhoneNumber: "", password: "" }}
+              initialValues={{ phone_number: "", password: "" }}
               validationSchema={signInValidationSchema}
               onSubmit={signIn}
             >
@@ -232,11 +235,11 @@ const StyledTextField = styled(TextField)(({  }) => ({
                  label="Telafono"
                  type="tel"
                  inputRef={inputRef}
-                 name="PhoneNumber"
+                 name="phone_number"
                  error={touched.phone_number && !!errors.phone_number}
                  className="w-full mb-1 outline-none"
                  helperText={
-                    <ErrorMessage name="PhoneNumber" component="p" className="mb-1 text-red-500 text-center" />
+                    <ErrorMessage name="phone_number" component="p" className="mb-1 text-red-500 text-center" />
                  }
                 />
 

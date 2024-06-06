@@ -9,7 +9,7 @@ import useCategoryStore from "@stor-category"
 
 function index() {
 
-const [dataGet , setDataGet] = useState({limit: 10, page:1})
+const [dataGet ,] = useState({limit: 10, page:1})
 const {getDataCategory , dataCategory , isLoader} =  useCategoryStore();
 
 useEffect(() =>{

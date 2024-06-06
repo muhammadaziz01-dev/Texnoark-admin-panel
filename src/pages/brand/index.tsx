@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 // import {GlobalTable} from "@ui";
-import { useEffect , } from "react";
+import { useEffect , useState } from "react";
 import { ToastContainer ,} from "react-toastify";
 
 
@@ -9,10 +9,11 @@ import {GlobalTable} from "@ui";
 import {ModalBrand} from "@modals"
 function index() {
   const {getBrand , dataBrands , isLoader} = useBrandStore();
-
+  const [ params , ] = useState({limit: 10, page:1})
+  
   // -> Function getBrand -------------->
   useEffect(() => {
-    getBrand();
+    getBrand(params);
   }, []);
   // <- Function getBrand <--------------
 
@@ -20,7 +21,7 @@ function index() {
   // Props Global teble -------------->
   const theder = [
     {title: "S/N" , value:"t/r"},
-    {title: "Brand" , value:"brand_name"},
+    {title: "Brand" , value:"name"},
     {title: "Action" , value:"action"}
   ]
 

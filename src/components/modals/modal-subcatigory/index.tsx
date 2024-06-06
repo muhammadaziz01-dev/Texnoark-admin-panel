@@ -43,13 +43,13 @@ export default function BasicModal({title , id , data}:propsData) {
   const parentCategoryId = Number(subcategory);
   
   const validationSchema = Yup.object().shape({
-    category_name: Yup.string().required("Name is required"),
-    positon: Yup.number().min(0, "must be at least greater than 0").required("Position is required"),
+    name: Yup.string().required("Name is required"),
+    category_id: Yup.number().min(0, "must be at least greater than 0").required("Position is required"),
   });
 
   const initialValues: postCategory = {
-    category_name: data?.category_name || "", 
-    positon: data?.positon || "",
+    name: data?.category_name || "", 
+    parent_category_id: data?.category_id || "",
   };
 
   const handelSubmit = async (value:postCategory ) => {

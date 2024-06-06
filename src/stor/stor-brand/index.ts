@@ -2,20 +2,23 @@
 import { create } from 'zustand' ;
 import { toast } from 'react-toastify'; 
 import { brand ,StoreBrand } from '@brand';
+import axios from 'axios';
+
+import {getCookies} from "@coocse" 
 
 
 const useBrandStore = create <StoreBrand> ((set)=>({
     isLoader: false,
     dataBrands: [],
     totlCount: 0,
-    getBrand : async()=>{
+    getBrand : async(data)=>{
         try{
            set({isLoader: true})
-           const respons = await brand.get()
+           const respons = await brand.get(data)
         //    console.log(respons)
            if(respons.status === 200){
-               set({dataBrands: respons?.data?.brands});
-               set({totlCount: respons?.data?.count})
+               set({dataBrands: respons?.data?.data});
+            //    set({totlCount: respons?.data?.count})
            }
            set({isLoader: false})
        }catch(error){
@@ -25,17 +28,24 @@ const useBrandStore = create <StoreBrand> ((set)=>({
        
     },
     postBrand: async(data)=>{
-        try{
-           const respons = await brand.post(data)
-        //    console.log(respons)
-           if(respons.status === 201){
-               set((state)=>({dataBrands: [...state.dataBrands, respons?.data?.brand]})) 
-               set((state)=>({totlCount: state.totlCount += 1}))
-               return respons?.status
-           }
-        }catch(error){
-            console.log(error)
+        try {
+            const response = await axios.post('https://ecomapi.ilyosbekdev.uz/brand', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            getCookies("acsses_token");
+            console.log(response);
+            if (response.status === 201) {
+                set((state) => ({ dataBrands: [...state.dataBrands, { ...data, product_id: response?.data?.id }] }));
+                toast.success("Successfully added");
+                return response?.status;
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Error: ");
         }
+
     },
     deleteBrand: async(id)=>{
         try{

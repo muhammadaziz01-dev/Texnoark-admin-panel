@@ -70,16 +70,16 @@ function indec({ heders, body, skelatonLoader }: Props) {
                           heders?.map((heder, index2)=>{
                             return <TableCell key={index2}>{
                               heder.value == "action" ? <div className="flex items-center gap-2">
-                                  <button className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></button>
+                                  <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></div>
                                    <ModalBrand title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action2" ? <div className="flex items-center gap-2">
-                                 <button className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></button>
+                                 <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                                  <ModalCategory title="put" id={body?.id} data={body}/>
                                  {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
                               </div>
                               :heder.value == "action3" ? <div className="flex items-center gap-2">
-                              <button className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></button>
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                               <ModalSubCategory title="put" id={body?.id} data={body}/>
                           </div>
                               : heder.value == "t/r" ? <p>{index + 1 }</p>
