@@ -50,9 +50,9 @@ export default function BasicModal({title , id , data}:propsData) {
   };
 
   const handelSubmit = async (value:postCategory ) => {
-    const postValue = { name: value.name , parent_category_id:0 }
+    // const postValue = { name: value.name , parent_category_id:0 }
     if(!id){
-      const status = await postDatacategory(postValue);
+      const status = await postDatacategory(value);
       if (status === 201) {
       toast.success("success full");
       handleClose();
@@ -61,7 +61,7 @@ export default function BasicModal({title , id , data}:propsData) {
        handleClose();
       }
     }else{
-      const updateData= {id:id, updateData : postValue}
+      const updateData= {id:id, updateData : value}
       const status = await updateDataCategory(updateData);
       if (status === 200) {
       toast.success("update success full"); 
