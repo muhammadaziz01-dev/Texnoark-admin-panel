@@ -1,9 +1,9 @@
 import request from "../config"
 
-// ----------------> Interface Services Brand <-------------------------------------
+// ----------------> Interface Services Brand catigory <-------------------------------------
 export interface postData{
     name: string;
-    brand_id?:any;
+    brand_id?:number;
 }
 
 export interface UpdateData{
@@ -18,34 +18,32 @@ export interface getBrand{
 }
 
 
-interface Brand{
+interface BrandCatigorty{
     get : (data:getBrand)=> any,
     post : (data:any)=> any,
     delete : (id:number)=> any,
-
     update : (data:UpdateData)=> any,
 }
 
-// ---------> Interface Srore Brand <--------------------
-export interface StoreBrand {
+// ---------> Interface Srore Brand Category<--------------------
+export interface StoreBrandCategory {
     isLoader:boolean;
-    dataBrands:any[];
+    dataBrandsCategory:any[];
     totlCount:number;
-    getBrand: (data:getBrand)=> Promise <any>;
-    postBrand: (data:any)=> Promise <any>;
-    deleteBrand: (id:number)=> Promise <any>;
-
-    updateBrand: (data:UpdateData)=> Promise <any>;
+    getBrandCategory: (data:getBrand)=> Promise <any>;
+    postBrandCategory: (data:any)=> Promise <any>;
+    deleteBrandCategory: (id:number)=> Promise <any>;
+    updateBrandCategory: (data:UpdateData)=> Promise <any>;
 }
 
 
 
 
 // ----------------> Instance Brand <----------------------------
-export const brand:Brand = {
-    get: (data)=> request.get(`/brand/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
-    post: (data)=> request.post("/brand" , data),
-    delete: (id)=> request.delete(`/brand/${id}`),
+export const brandCategory:BrandCatigorty = {
+    get: (data)=> request.get(`/brand-category/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
+    post: (data)=> request.post("/brand-category" , data),
+    delete: (id)=> request.delete(`/brand-category/${id}`),
     
-    update: (data)=> request.patch(`/brand/${data.id}`, data.putData)
+    update: (data)=> request.patch(`/brand-category/${data.id}`, data.putData)
 }

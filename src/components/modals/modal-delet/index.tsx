@@ -7,6 +7,7 @@ import { toast  } from 'react-toastify';
 
 import useBrandStore from '@store-brand';
 import useCategoryStore from '@stor-category';
+import useBrandCategoryStore from '@store-brand-category';
 
 
 export default function FadeMenu({id , title}:{id:number , title : string}) {
@@ -21,7 +22,8 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
 
   // my function start ----------------------
  const {deleteBrand} = useBrandStore();
- const {deleteDataCategory} = useCategoryStore()
+ const {deleteDataCategory} = useCategoryStore();
+ const {deleteBrandCategory} = useBrandCategoryStore();
 
   
   const deleteData = async() => {
@@ -47,6 +49,17 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
           toast.error("Error " + err?.message)
           console.log(err);
       }
+    }else if (title == "brand-category"){
+      try{
+        const staus = await deleteBrandCategory(id)
+      if(staus === 200){
+        handleClose()
+        toast.success("Category deleted successfully")
+      } 
+    }catch(err:any){
+        toast.error("Error " + err?.message)
+        console.log(err);
+    }
     }
   }
 

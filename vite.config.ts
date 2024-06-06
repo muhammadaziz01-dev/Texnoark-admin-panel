@@ -22,11 +22,14 @@ export default defineConfig({
 
       { find: '@category', replacement: '/src/service/category' },
       { find: '@brand', replacement: '/src/service/brand' },
+      { find: '@brand-category', replacement: '/src/service/brand-category' },
+
 
 
 
       { find: '@stor-category', replacement: '/src/stor/stor-category'},
       { find: '@store-brand', replacement: '/src/stor/stor-brand'},
+      { find: '@store-brand-category', replacement: '/src/stor/stor-brand-category'},
 
     ]
   }

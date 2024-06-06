@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 
 import App from "../App";
-import {Auth, Arror, Category,SubCategory , Brand , Settings} from "@pages"
+import {Auth, Arror, Category,SubCategory , Brand , Settings , BrandCategory} from "@pages"
 import {HomeLayout} from "@layut"
 
 const index = ()=>{
@@ -18,6 +18,7 @@ const index = ()=>{
                 <Route index element={<Category />} />
                 <Route path="category/:subcategory" element={<SubCategory /> } /> 
                 <Route path="brands" element={<Brand />} />
+                <Route path="brand-catigory" element={<BrandCategory />} />
                 <Route path="settings" element={<Settings />} />
             </Route>  
             <Route path="*" element={<Arror />} />

@@ -18,7 +18,7 @@ import {
 // import {  useSearchParams } from "react-router-dom";
 
 import { Props } from "@globol-interface";
-import { ModalDelete , ModalBrand , ModalCategory , ModalSubCategory} from "@modals"
+import { ModalDelete , ModalBrand , ModalCategory , ModalSubCategory , ModalBrandCategory} from "@modals"
 
 
 function indec({ heders, body, skelatonLoader }: Props) {
@@ -81,7 +81,12 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               :heder.value == "action3" ? <div className="flex items-center gap-2">
                               <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                               <ModalSubCategory title="put" id={body?.id} data={body}/>
-                          </div>
+                              </div>
+                              :heder.value == "action4" ? <div className="flex items-center gap-2">
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand-category"/></div>
+                              <ModalBrandCategory title="put" id={body?.id} data={body}/>
+                              {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
+                           </div>
                               : heder.value == "t/r" ? <p>{index + 1 }</p>
                               : (body[heder.value])
                             }</TableCell>
