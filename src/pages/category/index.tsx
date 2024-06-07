@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import {ModalCategory} from "@modals"
-import {GlobalTable ,  GlobalSearch} from "@ui";
+import {GlobalTable ,  GlobalSearch , GlobalPogination} from "@ui";
 import useCategoryStore from "@stor-category"
 
 
@@ -12,7 +12,8 @@ function index() {
 const navigate = useNavigate()
 const [change, setChange] = useState("")
 const [parms , setParams] = useState({limit: 10, page:1 , search:change})
-const {getDataCategory , dataCategory , isLoader} =  useCategoryStore();
+const {getDataCategory , dataCategory , isLoader , totlCount} =  useCategoryStore();
+const totleCuont2 = Math.ceil(totlCount / parms?.limit)
 
 useEffect(() =>{
   getDataCategory(parms);
@@ -33,12 +34,25 @@ useEffect(()=>{
   
 },[location.search]);
 
+
+
+
  // Props Global teble -------------->
  const theder = [
   {title: "S/N" , value:"t/r"},
   {title: "Category" , value:"name"},
   {title: "Action" , value:"action2"}
 ]
+
+
+//--- pagination tett mui <----
+const changePage = (value:number)=>{
+  setParams(preParams=>({
+      ...preParams,
+      page:value
+  }));
+}
+//=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-
 
 
 // Hendel chenge ------>
@@ -60,6 +74,8 @@ const hendalChange = (e:any)=>{
     />
   </div>
    <GlobalTable heders={theder} body={dataCategory} skelatonLoader={isLoader}/>
+
+   <GlobalPogination totleCuont={totleCuont2} page={parms?.page} setParams={changePage} />
   </>
 }
 

@@ -31,7 +31,7 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
                 const respons = await category.postCatigory(data)
              //    console.log(respons)
                 if(respons.status === 201){
-                    set((state)=>({dataCategory: [...state.dataCategory, respons?.data?.data]})) 
+                    set((state)=>({dataCategory: state.dataCategory.length < 10 ? [...state.dataCategory, respons?.data?.data] : [...state.dataCategory]})) 
                     set((state)=>({totlCount: state.totlCount += 1}))
                     return respons?.status
                 }

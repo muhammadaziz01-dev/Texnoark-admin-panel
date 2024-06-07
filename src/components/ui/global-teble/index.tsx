@@ -15,7 +15,7 @@ import {
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 // import { ToastContainer } from "react-toastify";
-// import {  useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 
 import { Props } from "@globol-interface";
 import { ModalDelete , ModalBrand , ModalCategory , ModalSubCategory , ModalBrandCategory , ModalProduct} from "@modals"
@@ -24,9 +24,9 @@ import { ModalDelete , ModalBrand , ModalCategory , ModalSubCategory , ModalBran
 function indec({ heders, body, skelatonLoader }: Props) {
 
   const navigate = useNavigate();
-  // const [searchPaams] = useSearchParams();
-  // const page = Number(searchPaams.get("page")) || 1;
-  // const limit = Number(searchPaams.get("limit")) || 8;
+  const [searchPaams] = useSearchParams();
+  const page = Number(searchPaams.get("page")) || 1;
+  const limit = Number(searchPaams.get("limit")) || 10;
 
 
   return (
@@ -91,7 +91,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               <ModalProduct title="put" id={body?.id} data={body}/>
                               {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
                               </div>
-                              : heder.value == "t/r" ? <>{index + 1 }</> 
+                              : heder.value == "t/r" ? <>{page * limit -(limit - 1) +index }</> 
                               // : heder.value == "parent_category_id" ? <>{body?.parent_category_id?.name }</>
                               : (body[heder.value])
                             }</TableCell>

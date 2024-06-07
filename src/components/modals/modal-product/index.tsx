@@ -137,38 +137,33 @@ export default function BasicModal({title , id , data}:propsData) {
                   title == "post"? "Add a product" : "Edit a product"
                 }
               </h1>
+               
               <Field
-                as={TextField}
-                label="Category name"
-                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                type="text"
-                name="name"
-                className=" w-[100%]  mb-3 outline-none py-0"
-                helperText={
-                  <ErrorMessage
-                     name="name"
-                     component="p"
-                     className="mb-3 text-red-500 text-center"
-                  />
-                }
-              />
-              <Field
-                as={TextField}
-                label="Price"
-                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                type="number"
-                name="price"
-                className=" w-[100%]  mb-3 outline-none py-0"
-                helperText={
-                  <ErrorMessage
-                     name="price"
-                     component="p"
-                     className="mb-3 text-red-500 text-center"
-                  />
-                }
-              />
+                  name= "category_id"
+                  type="text"
+                  as={TextField}
+                  label="Category ID"
+                  select
+                  className="relative"
+                  margin="none"
+                  variant="outlined"
+                  fullWidth
+                  helperText={
+                    <ErrorMessage
+                      name="category_id"
+                      component="p"
+                      className="text-[red] text-[15px]"
+                    />
+                  }
+                >
+                  {dataCategory?.map((item: any, index: number) => (
+                    <MenuItem key={index} value={item.id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </Field>
 
-                <Field
+              <Field
                   name= "brand_id"
                   type="text"
                   as={TextField}
@@ -218,30 +213,40 @@ export default function BasicModal({title , id , data}:propsData) {
                   ))}
                 </Field>
 
-                <Field
-                  name= "category_id"
-                  type="text"
-                  as={TextField}
-                  label="Category ID"
-                  select
-                  className="relative"
-                  margin="none"
-                  variant="outlined"
-                  fullWidth
-                  helperText={
-                    <ErrorMessage
-                      name="category_id"
-                      component="p"
-                      className="text-[red] text-[15px]"
-                    />
-                  }
-                >
-                  {dataCategory?.map((item: any, index: number) => (
-                    <MenuItem key={index} value={item.id}>
-                      {item.name}
-                    </MenuItem>
-                  ))}
-                </Field>
+                
+
+              <Field
+                as={TextField}
+                label="Category name"
+                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
+                type="text"
+                name="name"
+                className=" w-[100%]  mb-3 outline-none py-0"
+                helperText={
+                  <ErrorMessage
+                     name="name"
+                     component="p"
+                     className="mb-3 text-red-500 text-center"
+                  />
+                }
+              />
+              <Field
+                as={TextField}
+                label="Price"
+                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
+                type="number"
+                name="price"
+                className=" w-[100%]  mb-3 outline-none py-0"
+                helperText={
+                  <ErrorMessage
+                     name="price"
+                     component="p"
+                     className="mb-3 text-red-500 text-center"
+                  />
+                }
+              />
+
+                
               
               <Button
                 sx={{ fontSize: "16px", fontWeight: "600" ,backgroundColor: "#D55200", "&:hover" :{background: "#D52200"} }}
