@@ -8,8 +8,9 @@ import { Button, TextField } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import { useParams } from "react-router-dom";
 
-import useCategoryStore from "@stor-category";
-import {postCategory} from "@category"
+import useSubCategoryStore from "@store-sub-category";
+import {postCategory} from "@category";
+
 
 
 const style = {
@@ -31,7 +32,7 @@ interface propsData{
 }
 
 export default function BasicModal({title , id , data}:propsData) {
-  const { postDatacategory , updateDataCategory } = useCategoryStore();
+  const { postDataSubCatigory , updateDataSubCatigory } = useSubCategoryStore();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -44,19 +45,18 @@ export default function BasicModal({title , id , data}:propsData) {
   
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    category_id: Yup.number().min(0, "must be at least greater than 0").required("Position is required"),
   });
 
   const initialValues: postCategory = {
-    name: data?.category_name || "", 
-    // parent_category_id: data?.category_id || "",
+    name: data?.name || "", 
   };
 
   const handelSubmit = async (value:postCategory ) => {
     console.log(value);
     const postValue = { ... value , parent_category_id:parentCategoryId }
+
     if(!id){
-      const status = await postDatacategory(postValue);
+      const status = await postDataSubCatigory(postValue);
       if (status === 201) {
       toast.success("success full");
       handleClose();
@@ -66,7 +66,7 @@ export default function BasicModal({title , id , data}:propsData) {
       }
     }else{
       const updateData= {id:id, updateData : postValue}
-      const status = await updateDataCategory(updateData);
+      const status = await updateDataSubCatigory(updateData);
       if (status === 200) {
       toast.success("update success full"); 
       handleClose();
@@ -119,30 +119,14 @@ export default function BasicModal({title , id , data}:propsData) {
               </h1>
               <Field
                 as={TextField}
-                label="Category name"
+                label="Supcategory name"
                 sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                 type="text"
-                name="category_name"
+                name="name"
                 className=" w-[100%]  mb-3 outline-none py-0"
                 helperText={
                   <ErrorMessage
-                     name="category_name"
-                     component="p"
-                     className="mb-3 text-red-500 text-center"
-                  />
-                }
-              />
-
-              <Field
-                as={TextField}
-                label="Positon number"
-                sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                type="number"
-                name="positon"
-                className=" w-[100%]  mb-3 outline-none py-0"
-                helperText={
-                  <ErrorMessage
-                     name="positon"
+                     name="name"
                      component="p"
                      className="mb-3 text-red-500 text-center"
                   />

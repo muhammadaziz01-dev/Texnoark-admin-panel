@@ -79,7 +79,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                                  <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                               </div>
                               :heder.value == "action3" ? <div className="flex items-center gap-2">
-                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="sub-category"/></div>
                               <ModalSubCategory title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action4" ? <div className="flex items-center gap-2">
@@ -87,7 +87,8 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               <ModalBrandCategory title="put" id={body?.id} data={body}/>
                               {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
                            </div>
-                              : heder.value == "t/r" ? <p>{index + 1 }</p>
+                              : heder.value == "t/r" ? <>{index + 1 }</> 
+                              // : heder.value == "parent_category_id" ? <>{body?.parent_category_id?.name }</>
                               : (body[heder.value])
                             }</TableCell>
                           })

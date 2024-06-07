@@ -21,6 +21,7 @@ export default defineConfig({
       { find: '@globol-interface', replacement: '/src/types/globol-interface' },
 
       { find: '@category', replacement: '/src/service/category' },
+      { find: '@sub-category', replacement: '/src/service/sub-category' },
       { find: '@brand', replacement: '/src/service/brand' },
       { find: '@brand-category', replacement: '/src/service/brand-category' },
 
@@ -28,6 +29,7 @@ export default defineConfig({
 
 
       { find: '@stor-category', replacement: '/src/stor/stor-category'},
+      { find: '@store-sub-category', replacement: '/src/stor/stor-sub-category'},
       { find: '@store-brand', replacement: '/src/stor/stor-brand'},
       { find: '@store-brand-category', replacement: '/src/stor/stor-brand-category'},
 

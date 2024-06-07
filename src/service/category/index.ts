@@ -2,7 +2,8 @@ import request from "../config"
 
 // ----------------> Instance Services Category<-------------------------------------
 export interface postCategory{
-    name: string, 
+    name: string,
+    parent_category_id?:number ;
 }
 
 export interface UpdateCategory {

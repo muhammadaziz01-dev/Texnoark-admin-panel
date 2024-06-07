@@ -1,42 +1,73 @@
-// import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect , useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-// import useCategoryStore from "@stor-category";
-// import {GlobalTable} from "@ui"
+import useSubCategoryStore from "@store-sub-category";
+import {GlobalTable , GlobalSearch} from "@ui"
 import {ModalSubCategory} from "@modals"
 function subcategory() {
-
-   //  const {getDataSubCategoryId , dataSubCategory , isLoader } = useCategoryStore();
-   //  const { subcategory } = useParams();
-   //  const subCatigoryId = Number(subcategory);
+   const navigate = useNavigate();
+    const { subcategory } = useParams();
+    const subCatigoryId = Number(subcategory);
+    const {getDataSubCatigory , dataSubCatigory , isLoader } = useSubCategoryStore();
+    const [serach , setSearch] =useState("");
+    const [params , setParams] = useState({id:subCatigoryId ,limit:10 , page:1 , search:serach})
 
     // console.log(subCatigoryId);
     
 
     //Function useEffect is getDataSubCategory <-----
      useEffect(()=>{
-      //   getDataSubCategoryId(subCatigoryId)
-     },[])
+      getDataSubCatigory(params)
+     },[params , serach])
+     useEffect(()=>{
+      const params = new URLSearchParams(location.search);
+      const page = params.get("page");
+      const search = params.get("search");
+      const searchString =  search ? search  : ""
+      const pageNuber = page ? parseInt(page): 1;
+      setParams(preParams=>({
+         ...preParams,
+          page:pageNuber,
+          search:searchString
+      }));
+      setSearch(searchString)
+      
+    },[location.search]);
     //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-    // Props data ClobalTeble <----------------
-   //   const theder = [
-   //      {title: "S/N" , value:"t/r"},
-   //      {title: "Subcategory" , value:"category_name"},
-   //      {title: "Parent Id" , value:"parent_category_id"},
-   //      {title: "Action" , value:"action3"}
-   //    ]
-    //=-=-=-=--=----=-=-=-===-=--=-=-=-=-=-=-=-=-=-
+   //  Props data ClobalTeble <----------------
+     const theder = [
+        {title: "S/N" , value:"t/r"},
+        {title: "Subcategory" , value:"name"},
+        {title: "Parent ID" , value:"parent_category_id"},
+        {title: "Action" , value:"action3"}
+      ]
+   //  =-=-=-=--=----=-=-=-===-=--=-=-=-=-=-=-=-=-=-
+
+
+     // Hendel chenge ------>
+     const hendalChange = (e:any)=>{
+       const search = e.target.value;
+       setSearch(search)
+       setParams(preParams=>({ ...preParams, search }))
+       const searchParams = new URLSearchParams(location.search);
+         searchParams.set("search", search)
+         navigate (`?${searchParams}`)
+ 
+ }
+ ///---------------------
+
 
     //=-=-=-=--=----=-=-=-===-=--=-=-=-=-=-=-=-=-=-
   return <>
      <ToastContainer />
-     <div className="py-3">
-       <h1>sub category</h1>
+     <div className="py-3 flex items-center justify-between">
+         <GlobalSearch search={serach} hendelChange={hendalChange} />
         <ModalSubCategory title="post" />
      </div>
-     {/* <GlobalTable heders={theder} body={dataSubCategory} skelatonLoader={isLoader}/> */}
+     <GlobalTable heders={theder} body={dataSubCatigory} skelatonLoader={isLoader}/>
   </>
 }
 
