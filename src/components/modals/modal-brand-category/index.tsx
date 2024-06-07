@@ -143,7 +143,7 @@ export default function BasicModal({title , id , data}:propsData) {
                   name= "brand_id"
                   type="text"
                   as={TextField}
-                  label="Category"
+                  label="Brand ID"
                   select
                   className="relative"
                   margin="none"

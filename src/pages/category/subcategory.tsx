@@ -33,6 +33,7 @@ function subcategory() {
   return <>
      <ToastContainer />
      <div className="py-3">
+       <h1>sub category</h1>
         <ModalSubCategory title="post" />
      </div>
      {/* <GlobalTable heders={theder} body={dataSubCategory} skelatonLoader={isLoader}/> */}
