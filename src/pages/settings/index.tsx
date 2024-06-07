@@ -6,17 +6,20 @@ import {auth} from "@service-auth";
 import{getCookies } from "@coocse"
 import {ModalDeleteAcount} from "@modals";
 import {removeCookiesAll } from "@coocse";
+import {Draever} from "@ui"
 
 function index() {
      const navigate = useNavigate();
     const [adminData, setAdminData] = useState<any>({});
     const adminId = Number(getCookies("admin_id"));
+    // console.log(adminId);
+    
 
     const getAdminData = async(id:number) => {
         try{
             const respons = await auth.getAdminId(id)
             if(respons.status === 200){
-                setAdminData(respons.data)
+                setAdminData(respons.data.data)
             }
              
         }catch(err){
@@ -76,11 +79,11 @@ useEffect(()=>{
                 </div>
                 <div>
                     <h2 className=" inline-block border-b">Updated at</h2>
-                    <h1 className="text-[18px] font-semibold">{adminData?.updatedAt ? adminData?.updatedAt.slice(0, 10) :"" }</h1>
+                    <h1 className="text-[18px] font-semibold">{adminData?.lastUpdateAt ? adminData?.lastUpdateAt.slice(0, 10) :"" }</h1>
                 </div>
                 <div className="flex items-center gap-4">
-                    <button className="py-2 px-5 rounded-md bg-[#D55200] text-white font-medium hover:bg-[rgb(213,110,0)] duration-300 active:bg-[#D55200]">update</button>
-                    <ModalDeleteAcount id={adminId}/>
+                    <Draever id={adminId} data={adminData}/>
+                    <ModalDeleteAcount id={adminId} />
                     <button onClick={addAccount} className="py-2 px-5 rounded-md bg-[#D55200] text-white font-medium hover:bg-[rgb(213,110,0)] duration-300 active:bg-[#D55200]">+ add acount</button>
                 </div>
             </div>

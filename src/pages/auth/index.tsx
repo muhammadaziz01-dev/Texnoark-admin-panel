@@ -85,6 +85,8 @@ const StyledTextField = styled(TextField)(({  }) => ({
       if(res.status === 200){
         setCookies("access_token", res?.data?.data?.token);
         setCookies("admin_data", res?.data?.data?.admin);
+        setCookies("admin_id", res?.data?.data?.admin?.id);
+
 
         // setCookies("refresh_token", res?.data?.tokens?.refresh_token);
         toast.success("Sign in success")
