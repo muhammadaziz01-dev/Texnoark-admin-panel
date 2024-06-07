@@ -24,6 +24,7 @@ export default defineConfig({
       { find: '@sub-category', replacement: '/src/service/sub-category' },
       { find: '@brand', replacement: '/src/service/brand' },
       { find: '@brand-category', replacement: '/src/service/brand-category' },
+      { find: '@product', replacement: '/src/service/product' },
 
 
 
@@ -32,6 +33,7 @@ export default defineConfig({
       { find: '@store-sub-category', replacement: '/src/stor/stor-sub-category'},
       { find: '@store-brand', replacement: '/src/stor/stor-brand'},
       { find: '@store-brand-category', replacement: '/src/stor/stor-brand-category'},
+      { find: '@store-product', replacement: '/src/stor/stor-product'},
 
     ]
   }

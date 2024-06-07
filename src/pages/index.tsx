@@ -5,6 +5,7 @@ import Category from "./category";
 import SubCategory from "./category/subcategory";
 import Brand from "./brand";
 import Settings from "./settings";
-import BrandCategory from "./brand-category"
+import BrandCategory from "./brand-category";
+import Product from "./product";
 
-export { Auth, Arror, Home , Category,SubCategory , Brand, Settings , BrandCategory};
+export { Auth, Arror, Home , Category,SubCategory , Brand, Settings , BrandCategory , Product};

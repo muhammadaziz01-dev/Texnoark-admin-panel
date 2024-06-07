@@ -9,6 +9,8 @@ import useBrandStore from '@store-brand';
 import useCategoryStore from '@stor-category';
 import useBrandCategoryStore from '@store-brand-category';
 import useSubCategoryStore from '@store-sub-category';
+import useProductStore from '@store-product';
+
 
 
 
@@ -27,6 +29,7 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
  const {deleteDataCategory} = useCategoryStore();
  const {deleteBrandCategory} = useBrandCategoryStore();
  const {deleteDataSubCatigory} = useSubCategoryStore();
+ const {deleteProduct} = useProductStore();
 
   
   const deleteData = async() => {
@@ -66,6 +69,17 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
     }else if (title == "sub-category"){
       try{
         const staus = await deleteDataSubCatigory(id)
+      if(staus === 200){
+        handleClose()
+        toast.success("Category deleted successfully")
+      } 
+    }catch(err:any){
+        toast.error("Error " + err?.message)
+        console.log(err);
+    }
+    }else if (title == "product"){
+      try{
+        const staus = await deleteProduct(id)
       if(staus === 200){
         handleClose()
         toast.success("Category deleted successfully")
