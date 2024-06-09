@@ -31,7 +31,7 @@ const useSubCategoryStore = create <StoreSubCategory> ((set)=>({
                 const respons = await subCategory.postSubCatigory(data)
              //    console.log(respons)
                 if(respons.status === 201){
-                    set((state)=>({dataSubCatigory: [...state.dataSubCatigory, respons?.data?.data]})) 
+                    set((state)=>({dataSubCatigory: state.dataSubCatigory.length < 10 ? [...state.dataSubCatigory, respons?.data?.data]: [...state.dataSubCatigory]})) 
                     set((state)=>({totlCount: state.totlCount += 1}))
                     return respons?.status
                 }

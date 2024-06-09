@@ -82,10 +82,11 @@ const StyledTextField = styled(TextField)(({  }) => ({
     
     try{
       const res = await auth.signin(usrData);
-      if(res.status === 200){
-        setCookies("access_token", res?.data?.data?.token);
+      if(res.status === 201){
+        setCookies("access_token", res?.data?.data?.tokens?.access_token);
+        setCookies("refresh_token", res?.data?.data?.tokens?.refresh_token);
         setCookies("admin_data", res?.data?.data?.admin);
-        setCookies("admin_id", res?.data?.data?.admin?.id);
+        setCookies("admin_id", res?.data?.data?.data?.id);
 
 
         // setCookies("refresh_token", res?.data?.tokens?.refresh_token);

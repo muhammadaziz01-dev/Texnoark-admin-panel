@@ -42,8 +42,8 @@ export interface StoreBrandCategory {
 // ----------------> Instance Brand <----------------------------
 export const brandCategory:BrandCatigorty = {
     get: (data)=> request.get(`/brand-category/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
-    post: (data)=> request.post("/brand-category" , data),
-    delete: (id)=> request.delete(`/brand-category/${id}`),
+    post: (data)=> request.post("/brand-category/create" , data),
+    delete: (id)=> request.delete(`/brand-category/delete/${id}`),
     
-    update: (data)=> request.patch(`/brand-category/${data.id}`, data.putData)
+    update: (data)=> request.patch(`/brand-category/update/${data.id}`, data.putData)
 }

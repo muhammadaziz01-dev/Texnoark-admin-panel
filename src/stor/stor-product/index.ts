@@ -31,7 +31,7 @@ const useProductStore = create <StoreProduct> ((set)=>({
                 const respons = await product.post(data)
              //    console.log(respons)
                 if(respons.status === 201){
-                    set((state)=>({dataProduct: [...state.dataProduct, respons?.data?.data]})) 
+                    set((state)=>({dataProduct: state.dataProduct.length < 10 ? [...state.dataProduct, respons?.data?.data] : [...state.dataProduct]})) 
                     set((state)=>({totlCount: state.totlCount += 1}))
                     return respons?.status
                 }

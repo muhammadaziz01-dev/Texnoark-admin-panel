@@ -47,8 +47,8 @@ export interface StoreBrand {
 // ----------------> Instance Brand <----------------------------
 export const brand:Brand = {
     get: (data)=> request.get(`/brand/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
-    post: (data)=> request.post("/brand" , data),
-    delete: (id)=> request.delete(`/brand/${id}`),
+    post: (data)=> request.post("/brand/create" , data),
+    delete: (id)=> request.delete(`/brand/delete/${id}`),
     
-    update: (data)=> request.patch(`/brand/${data.id}`, data.putData)
+    update: (data)=> request.patch(`/brand/update/${data.id}`, data.putData)
 }

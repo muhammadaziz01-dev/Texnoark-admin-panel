@@ -29,15 +29,16 @@ const useBrandStore = create <StoreBrand> ((set)=>({
     },
     postBrand: async(data)=>{
         try {
-            const response = await axios.post('https://ecomapi.ilyosbekdev.uz/brand', data, {
+            const response = await axios.post('https://ecomapi.ilyosbekdev.uz/brand/create', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
             getCookies("acsses_token");
-            console.log(response);
+            // console.log(response);
             if (response.status === 201) {
-                set((state) => ({ dataBrands: [...state.dataBrands, response?.data?.data] }));
+                set((state) => ({ dataBrands: state.dataBrands.length < 10 ? [...state.dataBrands, response?.data?.data] : [...state.dataBrands] }));
+                set((state)=>({totlCount: state.totlCount += 1}))
                 return response?.status;
             }
         } catch (error) {

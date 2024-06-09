@@ -7,5 +7,6 @@ import Brand from "./brand";
 import Settings from "./settings";
 import BrandCategory from "./brand-category";
 import Product from "./product";
+import ProductDetalis from "./product/product-detail"
 
-export { Auth, Arror, Home , Category,SubCategory , Brand, Settings , BrandCategory , Product};
+export { Auth, Arror, Home , Category,SubCategory , Brand, Settings , BrandCategory , Product , ProductDetalis};

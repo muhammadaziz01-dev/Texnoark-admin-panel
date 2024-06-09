@@ -44,7 +44,7 @@ export interface StoreCategory {
 // ----------------> Instance Category <----------------------------
 export const category:Category = {
     getCatigory: (data)=> request.get(`/category/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
-    deleteCategory: (id)=> request.delete(`/category/${id}`),
-    postCatigory: (data)=> request.post("/category" , data),
-    updateCategory: (data)=> request.patch(`/category/${data.id}`, data.updateData),
+    deleteCategory: (id)=> request.delete(`/category/delete/${id}`),
+    postCatigory: (data)=> request.post("/category/create" , data),
+    updateCategory: (data)=> request.patch(`/category/update/${data.id}`, data.updateData),
 }

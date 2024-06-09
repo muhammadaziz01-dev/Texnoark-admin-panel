@@ -4,15 +4,16 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import useSubCategoryStore from "@store-sub-category";
-import {GlobalTable , GlobalSearch} from "@ui"
+import {GlobalTable , GlobalSearch , GlobalPogination} from "@ui"
 import {ModalSubCategory} from "@modals"
 function subcategory() {
    const navigate = useNavigate();
     const { subcategory } = useParams();
     const subCatigoryId = Number(subcategory);
-    const {getDataSubCatigory , dataSubCatigory , isLoader } = useSubCategoryStore();
+    const {getDataSubCatigory , dataSubCatigory , isLoader ,totlCount } = useSubCategoryStore();
     const [serach , setSearch] =useState("");
     const [params , setParams] = useState({id:subCatigoryId ,limit:10 , page:1 , search:serach})
+    const totleCuont2 = Math.ceil(totlCount / params?.limit)
 
     // console.log(subCatigoryId);
     
@@ -47,6 +48,16 @@ function subcategory() {
    //  =-=-=-=--=----=-=-=-===-=--=-=-=-=-=-=-=-=-=-
 
 
+
+   //--- pagination tett mui <----
+const changePage = (value:number)=>{
+  setParams(preParams=>({
+      ...preParams,
+      page:value
+  }));
+}
+//=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-
+
      // Hendel chenge ------>
      const hendalChange = (e:any)=>{
        const search = e.target.value;
@@ -68,6 +79,7 @@ function subcategory() {
         <ModalSubCategory title="post" />
      </div>
      <GlobalTable heders={theder} body={dataSubCatigory} skelatonLoader={isLoader}/>
+     <GlobalPogination totleCuont={totleCuont2} page={params?.page} setParams={changePage}/>
   </>
 }
 

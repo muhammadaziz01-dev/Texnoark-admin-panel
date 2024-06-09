@@ -45,7 +45,7 @@ export interface StoreProduct{
 // ----------------> Instance Product <----------------------------
 export const product:Product = {
     get: (data)=> request.get(`/products/search?search=${data?.search}&limit=${data?.limit}&page=${data?.page}`),
-    post: (data)=> request.post("/products" , data),
-    delete: (id)=> request.delete(`/products/${id}`),
-    update: (data)=> request.patch(`/products/${data.id}`, data.putData)
+    post: (data)=> request.post("/products/create" , data),
+    delete: (id)=> request.delete(`/products/delete/${id}`),
+    update: (data)=> request.patch(`/products/update/${data.id}`, data.putData)
 }

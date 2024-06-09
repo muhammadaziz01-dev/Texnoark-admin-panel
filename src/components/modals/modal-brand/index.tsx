@@ -32,8 +32,6 @@ interface PropsData {
 
 export default function BasicModal({ title, id, data }: PropsData) {
 
-  // const [search] = useState("")
-  console.log(data);
   
   const { postBrand, updateBrand } = useBrandStore(); //updateBrand
   const { getDataCategory, dataCategory } = useCategoryStore();
@@ -61,6 +59,8 @@ export default function BasicModal({ title, id, data }: PropsData) {
   
 
   const handleSubmit = async (values: postData) => {
+    // console.log(values);
+    
     const formData = new FormData();
     formData.append("name", values.name);
     formData.append("description", values.description);
@@ -177,14 +177,14 @@ export default function BasicModal({ title, id, data }: PropsData) {
                 </Field>
                 {
                   id ? "" : <div>
-                    <input
+                  <input
                   type="file"
                   name="file"
                   className="w-[100%] mb-3 outline-none py-0"
                   onChange={(event:any) => {
                     setFieldValue("file", event.currentTarget.files[0]);
                   }}
-                />
+                  />
                 <ErrorMessage
                   name="file"
                   component="div"

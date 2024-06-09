@@ -96,7 +96,9 @@ export default function BasicModal({title , id , data}:propsData) {
       }
     }
   };
-
+  const handleChange = (id:number) => {
+    console.log(id)
+  }
   // my code end <--------------------------------
 
   return (
@@ -165,7 +167,7 @@ export default function BasicModal({title , id , data}:propsData) {
 
               <Field
                   name= "brand_id"
-                  type="text"
+                  type="select"
                   as={TextField}
                   label="Brand ID"
                   select
@@ -176,13 +178,13 @@ export default function BasicModal({title , id , data}:propsData) {
                   helperText={
                     <ErrorMessage
                       name="brand_id"
-                      component="p"
+                      component="div"
                       className="text-[red] text-[15px]"
                     />
                   }
                 >
                   {dataBrands?.map((item: any, index: number) => (
-                    <MenuItem key={index} value={item.id}>
+                    <MenuItem key={index} value={item.id} onClick={()=>handleChange(item.id)}>
                       {item.name}
                     </MenuItem>
                   ))}
@@ -198,6 +200,7 @@ export default function BasicModal({title , id , data}:propsData) {
                   margin="none"
                   variant="outlined"
                   fullWidth
+                  
                   helperText={
                     <ErrorMessage
                       name="brand_category_id"

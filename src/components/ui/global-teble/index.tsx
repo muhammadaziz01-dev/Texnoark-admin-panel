@@ -89,7 +89,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               :heder.value == "action5" ? <div className="flex items-center gap-2">
                               <div className=' text-gray-500'><ModalDelete id={body?.id} title="product"/></div>
                               <ModalProduct title="put" id={body?.id} data={body}/>
-                              {/* <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button> */}
+                              <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/products/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                               </div>
                               : heder.value == "t/r" ? <>{page * limit -(limit - 1) +index }</> 
                               // : heder.value == "parent_category_id" ? <>{body?.parent_category_id?.name }</>

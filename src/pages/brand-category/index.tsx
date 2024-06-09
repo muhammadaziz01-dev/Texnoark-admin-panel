@@ -4,13 +4,14 @@ import { ToastContainer ,} from "react-toastify";
 
 
 import useBrandCategoryStore from "@store-brand-category";
-import {GlobalTable , GlobalSearch} from "@ui";
+import {GlobalTable , GlobalSearch , GlobalPogination} from "@ui";
 import { ModalBrandCategory} from "@modals"
 function index() {
   const navigate = useNavigate();
   const [change, setChange] = useState("")
   const [parms , setParams] = useState({limit: 10, page:1 , search:change})
-  const {getBrandCategory, dataBrandsCategory ,  isLoader} = useBrandCategoryStore();
+  const {getBrandCategory, dataBrandsCategory ,  isLoader , totlCount} = useBrandCategoryStore();
+  const totleCuont2 = Math.ceil(totlCount / parms?.limit)
   
   // -> Function getBrand -------------->
   useEffect(() => {
@@ -40,6 +41,17 @@ function index() {
     {title: "Action" , value:"action4"}
   ]
 
+
+  //--- pagination tett mui <----
+const changePage = (value:number)=>{
+  setParams(preParams=>({
+      ...preParams,
+      page:value
+  }));
+}
+//=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-
+
+
   // Hendel chenge ------>
 const hendalChange = (e:any)=>{
   const search = e.target.value;
@@ -59,6 +71,7 @@ const hendalChange = (e:any)=>{
       <ModalBrandCategory title="post"/>
     </div>
     <GlobalTable heders={theder} body={dataBrandsCategory} skelatonLoader={isLoader}/>
+    <GlobalPogination totleCuont={totleCuont2} page={parms?.page} setParams={changePage} />
   </>
 }
 
