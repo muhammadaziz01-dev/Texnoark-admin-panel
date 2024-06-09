@@ -192,7 +192,7 @@ export default function TemporaryDrawer({ id }: { id: number }) {
         onClick={toggleDrawer(true)}
         className="py-2 px-5 rounded-md bg-[#D55200] text-white font-medium hover:bg-[rgb(213,110,0)] duration-300 active:bg-[#D55200]"
       >
-        Update
+        Create
       </button>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>

@@ -38,6 +38,7 @@ export interface StoreBrandCategory {
     dataBrandsCategory:any[];
     dataBrandCategoryId:any[];
     totlCount:number;
+    totlCountBrandCategory:number;
     getBrandCategory: (data:getBrand)=> Promise <any>;
     postBrandCategory: (data:any)=> Promise <any>;
     deleteBrandCategory: (id:number)=> Promise <any>;

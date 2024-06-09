@@ -9,6 +9,7 @@ const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
     dataBrandsCategory: [],
     dataBrandCategoryId: [],
     totlCount: 0,
+    totlCountBrandCategory: 0,
     getBrandCategory : async(data)=>{
         try{
            set({isLoader: true})
@@ -32,8 +33,14 @@ const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
                 const respons = await brandCategory.post(data)
              //    console.log(respons)
                 if(respons.status === 201){
-                    set((state)=>({dataBrandsCategory: state.dataBrandsCategory.length < 10 ?  [...state.dataBrandsCategory, respons?.data?.data] : [...state.dataBrandsCategory]})) 
-                    set((state)=>({totlCount: state.totlCount += 1}))
+                    set((state)=>({
+                        dataBrandsCategory: state.dataBrandsCategory.length < 10 ?  [...state.dataBrandsCategory, respons?.data?.data] : [...state.dataBrandsCategory],
+                        dataBrandCategoryId: state.dataBrandCategoryId.length < 10 ? [...state.dataBrandCategoryId, respons?.data?.data] : [...state.dataBrandCategoryId],
+                    })) 
+                    set((state)=>({
+                        totlCount: state.totlCount += 1 ,
+                        totlCountBrandCategory: state.totlCountBrandCategory += 1 ,
+                    }))
                     return respons?.status
                 }
              }catch(error){
@@ -46,8 +53,14 @@ const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
            const respons = await brandCategory.delete(id)
         //    console.log(respons)
            if(respons.status === 200){
-               set((state)=>({dataBrandsCategory: state.dataBrandsCategory.filter((el:any)=>el.id !== id)})) 
-               set((state)=>({totlCount: state.totlCount -= 1}))
+               set((state)=>({
+                dataBrandsCategory: state.dataBrandsCategory.filter((el:any)=>el.id !== id),
+                dataBrandCategoryId: state.dataBrandCategoryId.filter((el:any)=>el.id!== id),
+               })) 
+               set((state)=>({
+                totlCount: state.totlCount -= 1,
+                totlCountBrandCategory: state.totlCountBrandCategory -= 1
+               }))
                toast.success("Deleted successfully")
            }
         }catch(error:any){
@@ -59,7 +72,10 @@ const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
             try{
                 const respons = await brandCategory.update(data)
                 if(respons?.status === 200){
-                    set((state)=>({dataBrandsCategory: state.dataBrandsCategory.map((el:any)=>el.id === data?.id ? {...data.putData , id:data.id} : el)}))
+                    set((state)=>({
+                        dataBrandsCategory: state.dataBrandsCategory.map((el:any)=>el.id === data?.id ? {...data.putData , id:data.id} : el),
+                        dataBrandCategoryId: state.dataBrandCategoryId.map((el:any)=>el.id === data?.id? {...data.putData, id:data.id} : el),
+                    }))
                     return respons?.status
                 }
                 
@@ -73,6 +89,7 @@ const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
         //    console.log(respons)
            if(respons.status === 200){
                set({dataBrandCategoryId: respons?.data?.data?.brandCategories})
+               set({totlCountBrandCategory: respons?.data?.data?.count})
            }
         }catch(error:any){
             console.log(error)

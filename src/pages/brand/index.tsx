@@ -37,7 +37,8 @@ function index() {
   // Props Global teble -------------->
   const theder = [
     {title: "S/N" , value:"t/r"},
-    {title: "Brand" , value:"name"},
+    {title: "Brand name" , value:"name"},
+    {title: "Brand logo" , value:"image"},
     {title: "Action" , value:"action"}
   ]
 

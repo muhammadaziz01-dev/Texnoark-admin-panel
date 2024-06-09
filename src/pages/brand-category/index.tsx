@@ -38,6 +38,7 @@ function index() {
   const theder = [
     {title: "S/N" , value:"t/r"},
     {title: "Brand Category" , value:"name"},
+    {title: "Brand ID" , value:"brand_id"},
     {title: "Action" , value:"action4"}
   ]
 

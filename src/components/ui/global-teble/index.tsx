@@ -13,12 +13,13 @@ import {
   Button,
 } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import ShortcutIcon from '@mui/icons-material/Shortcut';
 import { useNavigate } from "react-router-dom";
 // import { ToastContainer } from "react-toastify";
 import {  useSearchParams } from "react-router-dom";
 
 import { Props } from "@globol-interface";
-import { ModalDelete , ModalBrand , ModalCategory , ModalSubCategory , ModalBrandCategory , ModalProduct} from "@modals"
+import { ModalDelete , ModalBrand , ModalBrandSingle , ModalCategory , ModalSubCategory , ModalBrandCategory , ModalProduct} from "@modals"
 
 
 function indec({ heders, body, skelatonLoader }: Props) {
@@ -72,11 +73,12 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               heder.value == "action" ? <div className="flex items-center gap-2">
                                   <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand"/></div>
                                    <ModalBrand title="put" id={body?.id} data={body}/>
+                                   <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/brands/${body?.id}`)}}  className=' text-gray-500'><ShortcutIcon/></Button>
                               </div>
                               :heder.value == "action2" ? <div className="flex items-center gap-2">
                                  <div className=' text-gray-500'><ModalDelete id={body?.id} title="category"/></div>
                                  <ModalCategory title="put" id={body?.id} data={body}/>
-                                 <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
+                                 <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/category/${body?.id}`)}}  className=' text-gray-500'><ShortcutIcon/></Button>
                               </div>
                               :heder.value == "action3" ? <div className="flex items-center gap-2">
                               <div className=' text-gray-500'><ModalDelete id={body?.id} title="sub-category"/></div>
@@ -91,8 +93,13 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               <ModalProduct title="put" id={body?.id} data={body}/>
                               <Button sx={{color: '#767676' }} onClick={()=>{navigate(`/home/products/${body?.id}`)}}  className=' text-gray-500'><VisibilityIcon/></Button>
                               </div>
+                              :heder.value == "action6" ? <div className="flex items-center gap-2">
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand-category"/></div>
+                              <ModalBrandSingle title="put" id={body?.id} data={body}/>
+                              </div>
                               : heder.value == "t/r" ? <>{page * limit -(limit - 1) +index }</> 
-                              // : heder.value == "parent_category_id" ? <>{body?.parent_category_id?.name }</>
+                              : heder.value == "image" ? <><img className="w-[120px] h-[40px] object-contain" src={body?.image} alt="brand logo" /></> 
+                              : heder.value == "price" ? <>{body?.price} $</> 
                               : (body[heder.value])
                             }</TableCell>
                           })
