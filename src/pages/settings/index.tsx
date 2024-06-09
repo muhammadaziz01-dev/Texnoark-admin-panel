@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {auth} from "@service-auth";
 import{getCookies } from "@coocse"
 import {ModalDeleteAcount} from "@modals";
-import {removeCookiesAll } from "@coocse";
+// import {removeCookiesAll } from "@coocse";
 import {Draever} from "@ui"
 
 function index() {
@@ -40,7 +40,7 @@ useEffect(()=>{
  // function addAccount <-------------------
 
  const addAccount = () => {
-    removeCookiesAll(["acssess_token", "refresh_token" , "admin_id" , "admin_activation_link"]);
+    // removeCookiesAll(["acssess_token", "refresh_token" , "admin_id" , "admin_data"]);
     navigate("/")
  }
  //=-=-=-=-=-=-=-=-=-=-=---=--=-=-=-=-=-=-=-=-=

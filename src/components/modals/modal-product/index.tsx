@@ -36,9 +36,9 @@ interface propsData{
 
 export default function BasicModal({title , id , data}:propsData) {
   const { postProduct , updateProduct} = useProductStore();
-  const {getBrand , dataBrands} = useBrandStore();
-  const {getBrandCategory , dataBrandsCategory} = useBrandCategoryStore();
   const {getDataCategory , dataCategory} = useCategoryStore();
+  const {getCategoryId , dataBrandsId} = useBrandStore();
+  const {getCategoryBrandId , dataBrandCategoryId} = useBrandCategoryStore();
 
 
   const [open, setOpen] = React.useState(false);
@@ -48,8 +48,6 @@ export default function BasicModal({title , id , data}:propsData) {
   /// my code start <-----------------------------
  
   useEffect(() => {
-    getBrand({search:""});
-    getBrandCategory({search:""});
     getDataCategory({search:""});
   }, []);
 
@@ -96,8 +94,12 @@ export default function BasicModal({title , id , data}:propsData) {
       }
     }
   };
+  const handleChange1 = (id:number) => {
+    getCategoryId({id:id})
+  }
+
   const handleChange = (id:number) => {
-    console.log(id)
+    getCategoryBrandId({id:id})
   }
   // my code end <--------------------------------
 
@@ -159,7 +161,7 @@ export default function BasicModal({title , id , data}:propsData) {
                   }
                 >
                   {dataCategory?.map((item: any, index: number) => (
-                    <MenuItem key={index} value={item.id}>
+                    <MenuItem key={index} value={item.id} onClick={()=>handleChange1(item.id)}>
                       {item.name}
                     </MenuItem>
                   ))}
@@ -183,7 +185,7 @@ export default function BasicModal({title , id , data}:propsData) {
                     />
                   }
                 >
-                  {dataBrands?.map((item: any, index: number) => (
+                  {dataBrandsId?.map((item: any, index: number) => (
                     <MenuItem key={index} value={item.id} onClick={()=>handleChange(item.id)}>
                       {item.name}
                     </MenuItem>
@@ -209,7 +211,7 @@ export default function BasicModal({title , id , data}:propsData) {
                     />
                   }
                 >
-                  {dataBrandsCategory?.map((item: any, index: number) => (
+                  {dataBrandCategoryId?.map((item: any, index: number) => (
                     <MenuItem key={index} value={item.id}>
                       {item.name}
                     </MenuItem>
@@ -220,7 +222,7 @@ export default function BasicModal({title , id , data}:propsData) {
 
               <Field
                 as={TextField}
-                label="Category name"
+                label="Product name"
                 sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                 type="text"
                 name="name"

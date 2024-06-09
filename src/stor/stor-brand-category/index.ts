@@ -7,6 +7,7 @@ import { brandCategory ,StoreBrandCategory } from '@brand-category';
 const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
     isLoader: false,
     dataBrandsCategory: [],
+    dataBrandCategoryId: [],
     totlCount: 0,
     getBrandCategory : async(data)=>{
         try{
@@ -66,6 +67,17 @@ const useBrandCategoryStore = create <StoreBrandCategory> ((set)=>({
                     console.log(error)
                 }
     },
+    getCategoryBrandId: async(data)=>{
+        try{
+           const respons = await brandCategory.getCategoryBrandId(data)
+        //    console.log(respons)
+           if(respons.status === 200){
+               set({dataBrandCategoryId: respons?.data?.data?.brandCategories})
+           }
+        }catch(error:any){
+            console.log(error)
+        }
+    }
 
 }))
 

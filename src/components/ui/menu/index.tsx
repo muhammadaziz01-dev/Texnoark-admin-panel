@@ -29,7 +29,7 @@ export default function AccountMenu() {
 const navigate = useNavigate()
 
 const handleSignin = ()=>{
-    removeCookiesAll(["access_token" ,  "admin_data" , "admin_id" ]);
+    removeCookiesAll(["access_token" ,  "admin_data" , "admin_id" ,"refresh_token" ]);
     navigate("/")
     // window.location.reload();
 }

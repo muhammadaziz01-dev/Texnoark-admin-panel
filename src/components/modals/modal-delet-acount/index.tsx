@@ -28,7 +28,7 @@ export default function FadeMenu({id}: {id: number}) {
         const respons = await auth.deleteAdminId(id);
         if(respons.status === 200){
             toast.success("Admin removed successfully")
-            removeCookiesAll(["access_token", "refresh_token", "admin_id", "admin_activation_link"]);
+            removeCookiesAll(["access_token", "refresh_token", "admin_id", "admin_data"]);
             handleClose()
             navigate("/")
         }

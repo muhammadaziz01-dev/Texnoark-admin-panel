@@ -10,6 +10,7 @@ import {getCookies} from "@coocse"
 const useBrandStore = create <StoreBrand> ((set)=>({
     isLoader: false,
     dataBrands: [],
+    dataBrandsId: [],
     totlCount: 0,
     getBrand : async(data)=>{
         try{
@@ -47,8 +48,6 @@ const useBrandStore = create <StoreBrand> ((set)=>({
         }
 
     },
-
-
     deleteBrand: async(id)=>{
         try{
            const respons = await brand.delete(id)
@@ -70,6 +69,16 @@ const useBrandStore = create <StoreBrand> ((set)=>({
             return respons?.status
         }
         
+        }catch(error:any){
+            console.log(error)
+        }
+    },
+    getCategoryId: async(data)=>{
+        try{
+            const respons = await brand.getCategoryId(data)
+            if(respons?.status === 200){
+                set(({dataBrandsId: respons?.data?.data?.brands}))
+            }
         }catch(error:any){
             console.log(error)
         }
