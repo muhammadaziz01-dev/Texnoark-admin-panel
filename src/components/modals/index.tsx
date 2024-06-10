@@ -4,8 +4,9 @@ import ModalCategory from "./modal-category";
 import ModalSubCategory from  "./modal-subcatigory" ;
 import ModalDeleteAcount from "./modal-delet-acount";
 import ModalBrandCategory from "./modal-brand-category";
-import ModalProduct from "./modal-product"
-import ModalBrandSingle from "./modal-brand-single"
+import ModalProduct from "./modal-product";
+import ModalBrandSingle from "./modal-brand-single";
+import ModalStock from "./modal-stock";
 export { 
     ModalDelete , 
     ModalBrand , 
@@ -15,4 +16,5 @@ export {
     ModalBrandCategory,
     ModalProduct,
     ModalBrandSingle,
+    ModalStock,
 }

@@ -9,5 +9,19 @@ import SingleBrandCategory from "./brand/brand-category";
 import Product from "./product";
 import ProductDetalis from "./product/product-detail"
 import Settings from "./settings";
+import Stock from "./stock";
 
-export { Auth, Arror, Home , Category,SubCategory , Brand, Settings , BrandCategory ,SingleBrandCategory, Product , ProductDetalis};
+export { 
+    Auth, 
+    Arror, 
+    Home , 
+    Category,
+    SubCategory , 
+    Brand, 
+    Settings , 
+    BrandCategory ,
+    SingleBrandCategory, 
+    Product , 
+    ProductDetalis,
+    Stock, 
+};

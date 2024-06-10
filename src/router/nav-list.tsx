@@ -40,8 +40,8 @@ const navList:navListInterface[] = [
         icon: <ProductionQuantityLimitsIcon />,
     },
     {
-        path:"/home/sales"  ,
-        title:"Sales",
+        path:"/home/stock"  ,
+        title:"Stock",
         icon: <MonetizationOnIcon />,
     },
     {

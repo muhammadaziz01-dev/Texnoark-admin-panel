@@ -36,6 +36,8 @@
             "@brand-category": ["./src/service/brand-category"],
             "@sub-category": ["./src/service/sub-category"],
             "@product": ["./src/service/product"],
+            "@stock": ["./src/service/stock"],
+
 
             // "@product": ["./src/service/product"],
 
@@ -47,6 +49,7 @@
             "@store-brand": ["./src/stor/stor-brand"],
             "@store-brand-category": ["./src/stor/stor-brand-category"],
             "@store-product": ["./src/stor/stor-product"],
+            "@store-stock": ["./src/stor/stor-stock"],
 
             
         },
