@@ -8,6 +8,7 @@ const useProductStore = create <StoreProduct> ((set)=>({
     isLoader: false,
     dataProduct: [],
     totlCount: 0,
+    productsId: null ,
     getProduct : async(data)=>{
         try{
            set({isLoader: true})
@@ -23,6 +24,21 @@ const useProductStore = create <StoreProduct> ((set)=>({
         set({isLoader: false})
        }
        
+    },
+
+    getProductId :async(id)=>{
+        try{
+           set({isLoader: true})
+           const respons = await product.getId(id)
+        //    console.log(respons)
+           if(respons.status === 200){
+               set({productsId: respons?.data?.data})
+           }
+           set({isLoader: false})
+       }catch(error){
+        console.log(error)
+        set({isLoader: false})
+       }
     },
 
     postProduct: async(data)=>{
