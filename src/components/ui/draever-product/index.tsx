@@ -35,12 +35,13 @@ export default function TemporaryDrawer({ id }: { id: number }) {
   const handleSubmit = async (values: any) => {
     // const colors = values.color.split(",").map((color: string) => color.trim());
     // console.log({ ...values, color: colors });
+    const postData = {...values, product_id:id }
     const formData = new FormData();
-    formData.append("quantity", values.quantity);
-    formData.append("discount", values.discount);
-    formData.append("description", values.description);
-    formData.append("color", values.color.trim());
-    formData.append("product_id", id.toString());
+    formData.append("quantity", postData.quantity);
+    formData.append("discount", postData.discount);
+    formData.append("description", postData.description);
+    formData.append("color", postData.color.trim());
+    formData.append("product_id", postData.product_id);
 
     values.files.forEach((file: any, index: number) => {
       formData.append(`files[${index}]`, file);
