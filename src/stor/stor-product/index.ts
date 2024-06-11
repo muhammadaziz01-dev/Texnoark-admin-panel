@@ -12,6 +12,7 @@ import { product , StoreProduct } from '@product';
 const useProductStore = create <StoreProduct> ((set)=>({
     isLoader: false,
     dataProduct: [],
+    dataProductsBrandId:[],
     totlCount: 0,
     productsId: null ,
     getProduct : async(data)=>{
@@ -116,6 +117,21 @@ const useProductStore = create <StoreProduct> ((set)=>({
                 }catch(error:any){
                     console.log(error)
                 }
+    },
+
+    getProductsBrandId: async(id)=>{
+        try{
+           set({isLoader: true})
+           const respons = await product.getProductsBrandId(id)
+        //    console.log(respons)
+           if(respons.status === 200){
+               set({dataProductsBrandId: respons?.data?.data})
+           }
+           set({isLoader: false})
+       }catch(error){
+        console.log(error)
+        set({isLoader: false})
+       }
     },
 }))
 

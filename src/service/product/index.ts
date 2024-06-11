@@ -51,12 +51,15 @@ interface Product{
 
     deleteProducDetels : (id:number)=> any,
     updateProductDetels : (data:UpdateProductDetels)=> any,
+
+    getProductsBrandId :(id:number)=> any,
 }
 
 // ---------> Interface Srore Product<--------------------
 export interface StoreProduct{
     isLoader:boolean;
     dataProduct:any[];
+    dataProductsBrandId:any[];
     totlCount:number;
     productsId: ProductsId | null
     getProduct: (data:getProduct)=> Promise <any>;
@@ -67,6 +70,8 @@ export interface StoreProduct{
 
     deleteProductDetels: (id:number)=> Promise <any>;
     updateProductDetels : (data:UpdateProductDetels)=> Promise <any>;
+
+    getProductsBrandId: (id:number)=> Promise <any>;
 
 }
 
@@ -83,5 +88,7 @@ export const product:Product = {
 
     deleteProducDetels: (id)=> request.delete(`/product-detail/delete/${id}`),
     updateProductDetels : (data)=> request.patch(`/product-detail/update/${data.id}`, data.putDataDetels),
+
+    getProductsBrandId: (id)=> request.get(`/products/brand/${id}`)
 
 }

@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import useBrandStore from "@store-brand";
 import useCategoryStore from "@stor-category";
 import useStockStore from "@store-stock";
+import useProductStore from "@store-product";
 import {postData} from "@stock"
 
 
@@ -34,9 +35,10 @@ interface propsData{
 }
 
 export default function BasicModal({title , id , data}:propsData) {
-  const { postStock , updateStock , grtBrandIdStock , dataBrandIdStock} = useStockStore();
+  const { postStock , updateStock } = useStockStore();
   const {getDataCategory , dataCategory} = useCategoryStore();
   const {getCategoryId , dataBrandsId} = useBrandStore();
+  const {getProductsBrandId , dataProductsBrandId} = useProductStore();
 
 
   const [open, setOpen] = React.useState(false);
@@ -48,6 +50,7 @@ export default function BasicModal({title , id , data}:propsData) {
   useEffect(() => {
     getDataCategory({search:""});
   }, []);
+  
 
 
 
@@ -95,7 +98,7 @@ export default function BasicModal({title , id , data}:propsData) {
   }
 
   const handleChange2 = (id:number) => {
-    grtBrandIdStock(id)
+    getProductsBrandId(id)
   }
 
   // my code end <--------------------------------
@@ -208,9 +211,9 @@ export default function BasicModal({title , id , data}:propsData) {
                     />
                   }
                 >
-                  {dataBrandIdStock?.map((item: any, index: number) => (
-                    <MenuItem key={index} value={item?.product_id?.id}>
-                      {item?.product_id?.name}
+                  {dataProductsBrandId?.map((item: any, index: number) => (
+                    <MenuItem key={index} value={item?.id}>
+                      {item?.name}
                     </MenuItem>
                   ))}
                 </Field>
