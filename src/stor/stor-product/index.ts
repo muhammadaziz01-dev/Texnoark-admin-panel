@@ -88,20 +88,17 @@ const useProductStore = create <StoreProduct> ((set)=>({
                 }
     },
 
-    
+
 
     deleteProductDetels: async(id)=>{
         try{
            const respons = await product.deleteProducDetels(id)
         //    console.log(respons)
            if(respons.status === 200){
-               set({productsId:null}) ;
-               toast.success("Deleted successfully");
-               return respons?.status
-            //    setTimeout(()=>{
-            //     navigate('/home/product')
-            //    }, 1000)
-
+               
+                set((state)=>({productsId: {...state.getProductId , product_detail:null}})) ;
+                
+                return respons?.status
            }
         }catch(error:any){
             console.log(error)

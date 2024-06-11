@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ImageGallery from "react-image-gallery";
+import { ToastContainer } from "react-toastify";
 
 import { TestDraever , ProductDraever } from "@ui";
 import {ModalDleteProductDetels} from "@modals"
@@ -26,6 +27,7 @@ function index() {
 
   return (
     <>
+      <ToastContainer />
       {isLoader ? (
         <div className="w-full h-full min-h[80vh] flex items-center justify-center">
           <div>

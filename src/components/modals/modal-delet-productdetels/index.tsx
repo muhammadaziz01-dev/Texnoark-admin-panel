@@ -27,7 +27,7 @@ export default function FadeMenu({id}: {id: number}) {
     try{
         const respons = await deleteProductDetels(id);
         if(respons.status === 200){
-            toast.success("Admin removed successfully")
+            toast.success("Delete product deleted")
             handleClose()
             setTimeout(()=>{
               window.location.reload()

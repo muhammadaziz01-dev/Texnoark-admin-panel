@@ -82,6 +82,9 @@ const Testdraever  = ({id}:{id:number}) => {
        if (response && response.status === 201) {
         toast.success("Product added successfully");
         onClose();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (err) {
       console.log(err);

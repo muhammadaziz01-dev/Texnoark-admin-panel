@@ -48,7 +48,7 @@ export default function BasicModal({title , id , data}:propsData) {
   /// my code start <-----------------------------
  
   useEffect(() => {
-    getDataCategory({search:""});
+    getDataCategory({search:"" , limit:1000 , page:1});
   }, []);
 
 
