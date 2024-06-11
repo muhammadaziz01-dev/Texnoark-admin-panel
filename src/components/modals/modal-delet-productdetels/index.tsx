@@ -2,11 +2,9 @@ import * as React from 'react';
 import Menu from '@mui/material/Menu';
 import Fade from '@mui/material/Fade';
 import { toast  } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
-import {auth} from "@service-auth";
 import useProductStore from "@store-product"
-import {removeCookiesAll} from "@coocse";
 
 
 export default function FadeMenu({id}: {id: number}) {
@@ -22,7 +20,7 @@ export default function FadeMenu({id}: {id: number}) {
   // my function start ----------------------
 
   
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const {deleteProductDetels} = useProductStore();
 
   const deleteData = async() => {
