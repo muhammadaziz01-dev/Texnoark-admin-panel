@@ -40,11 +40,11 @@ export default function TemporaryDrawer({ id }: { id: number }) {
     formData.append("quantity", postData.quantity);
     formData.append("discount", postData.discount);
     formData.append("description", postData.description);
-    formData.append("color", postData.color.trim());
+    formData.append("color", postData.color);
     formData.append("product_id", postData.product_id);
 
-    values.files.forEach((file: any, index: number) => {
-      formData.append(`files[${index}]`, file);
+    values.files.forEach((file: any) => {
+      formData.append(`files`, file);
     });
     //  console.log(formData);
     const access_token = getCookies("access_token") 
