@@ -15,6 +15,11 @@ export interface UpdateData{
 }
 
 
+export interface getStock{
+    limit ?: number;
+    page ?: number;
+}
+
 
 export interface ProductsId {
     [index :string] :unknown |any
@@ -22,10 +27,12 @@ export interface ProductsId {
 
 
 interface Stock{
-    get : ()=> any,
+    get : (data:getStock)=> any,
     post : (data:any)=> any,
     delete : (id:number)=> any,
     update : (data:UpdateData)=> any,
+
+    grtBrandIdStock :(id:number)=> any,
 
 }
 
@@ -33,11 +40,14 @@ interface Stock{
 export interface StoreStock{
     isLoader:boolean;
     dataStock:any[];
+    dataBrandIdStock:any[];
     totlCount:number;
-    getStock: ()=> Promise <any>;
+    getStock: (dat:getStock)=> Promise <any>;
     postStock: (data:any)=> Promise <any>;
     deleteStock: (id:number)=> Promise <any>;
     updateStock: (data:UpdateData)=> Promise <any>;
+
+    grtBrandIdStock :(id:number)=> Promise <any>;
 }
 
 
@@ -45,9 +55,11 @@ export interface StoreStock{
 
 // ----------------> Instance stock <----------------------------
 export const stock:Stock = {
-    get: ()=> request.get(`/stock`),
+    get: (data)=> request.get(`/stock?limit=${data?.limit}&page=${data?.page}`),
     post: (data)=> request.post("/stock/create" , data),
     delete: (id)=> request.delete(`/stock/delete/${id}`),
     update: (data)=> request.patch(`/stock/update/${data.id}`, data.putData),
+
+    grtBrandIdStock: (id)=> request.get(`/stock/brand/${id}`)
 
 }

@@ -2,14 +2,15 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 
-import { TestDraever } from "@ui";
+import { TestDraever , ProductDraever } from "@ui";
+import {ModalDleteProductDetels} from "@modals"
 import useProductStore from "@store-product";
 import "./style.scss";
 
 function index() {
   const { id } = useParams();
   const productId = Number(id);
-  const { getProductId, productsId, isLoader } = useProductStore();
+  const { getProductId , productsId, isLoader } = useProductStore();
 
   // console.log(typeof(productId));
 
@@ -117,14 +118,10 @@ function index() {
                     $
                   </span>
                 </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3 ">
-                    {/* <IconButton aria-label="add to favorites" onClick={()=>{btnLike(product?.product_id)}} >
-                 <FavoriteIcon fontSize="medium"/>
-              </IconButton>
-              <IconButton aria-label="add to favorites"  >
-                 <ShoppingCartIcon fontSize="medium"/>
-              </IconButton> */}
+                <div className="flex items-center justify-end">
+                  <div className="flex items-center justify-end gap-3 mt-2">
+                    <ProductDraever data={productsId?.product_detail} id={productsId?.product?.id} />
+                    <ModalDleteProductDetels id={productsId?.product_detail?.id} />
                   </div>
                 </div>
 
@@ -218,6 +215,7 @@ function index() {
               </div>
             </div>
           ) : (
+
             <div className="w-full h-full ">
               {/* <button className=" py-2 px-2 rounded-md mb-5 hover:shadow-md duration-300"><KeyboardReturnIcon/></button> */}
               <div className="">

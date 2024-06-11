@@ -12,7 +12,6 @@ import { useEffect } from "react";
 import useBrandStore from "@store-brand";
 import useCategoryStore from "@stor-category";
 import useStockStore from "@store-stock";
-import useProductStore from "@store-product";
 import {postData} from "@stock"
 
 
@@ -35,10 +34,9 @@ interface propsData{
 }
 
 export default function BasicModal({title , id , data}:propsData) {
-  const { postStock , updateStock} = useStockStore();
+  const { postStock , updateStock , grtBrandIdStock , dataBrandIdStock} = useStockStore();
   const {getDataCategory , dataCategory} = useCategoryStore();
   const {getCategoryId , dataBrandsId} = useBrandStore();
-  const {getProduct , dataProduct} = useProductStore();
 
 
   const [open, setOpen] = React.useState(false);
@@ -49,7 +47,6 @@ export default function BasicModal({title , id , data}:propsData) {
  
   useEffect(() => {
     getDataCategory({search:""});
-    getProduct({search:"" , limit:1000, page:1});
   }, []);
 
 
@@ -95,6 +92,10 @@ export default function BasicModal({title , id , data}:propsData) {
   };
   const handleChange1 = (id:number) => {
     getCategoryId({id:id})
+  }
+
+  const handleChange2 = (id:number) => {
+    grtBrandIdStock(id)
   }
 
   // my code end <--------------------------------
@@ -182,7 +183,7 @@ export default function BasicModal({title , id , data}:propsData) {
                   }
                 >
                   {dataBrandsId?.map((item: any, index: number) => (
-                    <MenuItem key={index} value={item.id} >
+                    <MenuItem key={index} value={item.id} onClick={()=>handleChange2(item.id)} >
                       {item.name}
                     </MenuItem>
                   ))}
@@ -207,9 +208,9 @@ export default function BasicModal({title , id , data}:propsData) {
                     />
                   }
                 >
-                  {dataProduct?.map((item: any, index: number) => (
-                    <MenuItem key={index} value={item.id}>
-                      {item.name}
+                  {dataBrandIdStock?.map((item: any, index: number) => (
+                    <MenuItem key={index} value={item?.product_id?.id}>
+                      {item?.product_id?.name}
                     </MenuItem>
                   ))}
                 </Field>

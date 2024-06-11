@@ -7,16 +7,17 @@ import { stock , StoreStock } from '@stock';
 const useStockStore = create <StoreStock> ((set)=>({
     isLoader: false,
     dataStock: [],
+    dataBrandIdStock:[],
     totlCount: 0,
     productsId: null ,
-    getStock : async()=>{
+    getStock : async(data)=>{
         try{
            set({isLoader: true})
-           const respons = await stock.get()
+           const respons = await stock.get(data)
         //    console.log(respons)
            if(respons.status === 200){
-               set({dataStock: respons?.data?.data});
-            //    set({totlCount: respons?.data?.data?.count})
+               set({dataStock: respons?.data?.data?.stocks});
+               set({totlCount: respons?.data?.data?.count})
            }
            set({isLoader: false})
        }catch(error){
@@ -33,7 +34,7 @@ const useStockStore = create <StoreStock> ((set)=>({
              //    console.log(respons)
                 if(respons.status === 201){
                     set((state)=>({dataStock:  [...state.dataStock, respons?.data?.data] })) 
-                    // set((state)=>({totlCount: state.totlCount += 1}))
+                    set((state)=>({totlCount: state.totlCount += 1}))
                     return respons?.status
                 }
              }catch(error){
@@ -47,7 +48,7 @@ const useStockStore = create <StoreStock> ((set)=>({
         //    console.log(respons)
            if(respons.status === 200){
                set((state)=>({dataStock: state.dataStock.filter((el:any)=>el.id !== id)})) 
-            //    set((state)=>({totlCount: state.totlCount -= 1}))
+               set((state)=>({totlCount: state.totlCount -= 1}))
                toast.success("Deleted successfully")
            }
         }catch(error:any){
@@ -59,7 +60,7 @@ const useStockStore = create <StoreStock> ((set)=>({
             try{
                 const respons = await stock.update(data)
                 if(respons?.status === 200){
-                    set((state)=>({dataStock: state.dataStock.map((el:any)=>el.id === data?.id ? {...data.putData , id:data.id} : el)}))
+                    set((state)=>({dataStock: state.dataStock.map((el:any)=>el.id === data?.id ? {...respons?.data?.data} : el)}))
                     return respons?.status
                 }
                 
@@ -67,6 +68,18 @@ const useStockStore = create <StoreStock> ((set)=>({
                     console.log(error)
                 }
     },
+
+    grtBrandIdStock: async(id)=>{
+        try{
+            const respons = await stock.grtBrandIdStock(id)
+        //    console.log(respons)
+            if(respons.status === 200){
+                set({dataBrandIdStock: respons?.data?.data})
+            }
+        }catch(error:any){
+            console.log(error)
+        }
+    }
 
 }))
 

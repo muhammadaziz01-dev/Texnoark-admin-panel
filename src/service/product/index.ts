@@ -25,6 +25,22 @@ export interface ProductsId {
     [index :string] :unknown |any
 }
 
+////produc detels ---------------
+
+export interface ProductDetels{
+    quantity: number| string;
+    colors:number;
+    description:string;
+    discount: number| string;
+    product_id: number;
+}
+
+export interface UpdateProductDetels{
+    id:number|undefined;
+    putDataDetels: ProductDetels;
+}
+
+
 
 interface Product{
     get : (data:getProduct)=> any,
@@ -32,6 +48,9 @@ interface Product{
     delete : (id:number)=> any,
     update : (data:UpdateData)=> any,
     getId : (id:number)=> any,
+
+    deleteProducDetels : (id:number)=> any,
+    updateProductDetels : (data:UpdateProductDetels)=> any,
 }
 
 // ---------> Interface Srore Product<--------------------
@@ -45,6 +64,10 @@ export interface StoreProduct{
     deleteProduct: (id:number)=> Promise <any>;
     updateProduct: (data:UpdateData)=> Promise <any>;
     getProductId: (id:number)=> Promise <any>;
+
+    deleteProductDetels: (id:number)=> Promise <any>;
+    updateProductDetels : (data:UpdateProductDetels)=> Promise <any>;
+
 }
 
 
@@ -56,5 +79,9 @@ export const product:Product = {
     post: (data)=> request.post("/products/create" , data),
     delete: (id)=> request.delete(`/products/delete/${id}`),
     update: (data)=> request.patch(`/products/update/${data.id}`, data.putData),
-    getId: (id)=> request.get(`/products/${id}`)
+    getId: (id)=> request.get(`/products/${id}`),
+
+    deleteProducDetels: (id)=> request.delete(`/product-detail/delete/${id}`),
+    updateProductDetels : (data)=> request.patch(`/product-detail/update/${data.id}`, data.putDataDetels),
+
 }

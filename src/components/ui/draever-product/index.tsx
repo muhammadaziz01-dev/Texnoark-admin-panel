@@ -5,11 +5,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
-import axios from 'axios';
 
-import {getCookies} from "@coocse"
+import useProductStore from "@store-product";
+import { toast } from "react-toastify";
 
-export default function TemporaryDrawer({ id }: { id: number }) {
+export default function TemporaryDrawer({ data , id }:any) {
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -20,43 +20,31 @@ export default function TemporaryDrawer({ id }: { id: number }) {
     quantity: Yup.number().min(0, "must be at least greater than 0").required("Quantity is required"),
     description: Yup.string().required("Description is required"),
     discount: Yup.number().min(0, "must be at least greater than 0").required("Discount is required"),
-    color: Yup.string().required("Color is required"),
-    files: Yup.array().of(Yup.mixed().required("File is required")).min(1, "At least one file is required"),
+    colors: Yup.string().required("Color is required"),
   });
 
   const initialValues = {
-    quantity: "",
-    discount: "",
-    description: "",
-    color: "",
-    files: [],
+    quantity: data?.quantity || "",
+    discount: data?.discount ||"",
+    description: data?.description || "",
+    colors: data?.colors?.join(", ") || "",
   };
 
-  const handleSubmit = async (values: any) => {
-    // const colors = values.color.split(",").map((color: string) => color.trim());
-    // console.log({ ...values, color: colors });
-    const postData = {...values, product_id:id }
-    const formData = new FormData();
-    formData.append("quantity", postData.quantity);
-    formData.append("discount", postData.discount);
-    formData.append("description", postData.description);
-    formData.append("color", postData.color);
-    formData.append("product_id", postData.product_id);
+  const {updateProductDetels} = useProductStore();
 
-    values.files.forEach((file: any) => {
-      formData.append(`files`, file);
-    });
-    //  console.log(formData);
-    const access_token = getCookies("access_token") 
-     
+  const handleSubmit = async (values: any) => {
+    
+    const updetDataDetels = {id:data.id , putDataDetels:{...values , product_id:id }}
+
     try {
-      const response = await axios.post("https://ecomapi.ilyosbekdev.uz/product-detail/create", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization:  `Bearer ${access_token}`
-        },
-      });
-      console.log(response);
+        const respons = await updateProductDetels(updetDataDetels)  
+        if(respons === 200){
+            toggleDrawer(false)
+            toast.success("Product detels updated successfully")
+            setTimeout(()=>{
+              window.location.reload();
+            },1000)
+        }
     } catch (err) {
       console.log(err);
     }
@@ -80,9 +68,9 @@ export default function TemporaryDrawer({ id }: { id: number }) {
               validationSchema={productDetailValidationSchema}
               onSubmit={handleSubmit}
             >
-              {({ setFieldValue }) => (
+            
                 <Form className="w-full flex flex-col gap-[8px]">
-                  <h2 className="text-center text-[#D55200] text-[22px] pb-4 font-semibold">Create new product detail</h2>
+                  <h2 className="text-center text-[#D55200] text-[22px] pb-4 font-semibold">Edite product detels</h2>
 
                   <Field
                     as={TextField}
@@ -134,40 +122,21 @@ export default function TemporaryDrawer({ id }: { id: number }) {
 
                   <Field
                     as={TextField}
-                    label="Color"
+                    label="Colors"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                     type="text"
-                    name="color"
+                    name="colors"
                     className="w-[100%] mb-3 outline-none py-0"
                     helperText={
                       <ErrorMessage
-                        name="color"
+                        name="colors"
                         component="span"
                         className="mb-3 text-red-500 text-center"
                       />
                     }
                   />
 
-                  {Array.from({ length: 2 }, (_, index) => (
-                    <div key={index}>
-                      <input
-                        type="file"
-                        name={`files[${index}]`}
-                        className="w-[100%] mb-3 outline-none py-0"
-                        onChange={(event) => {
-                          const files = event.currentTarget.files;
-                          if (files) {
-                            setFieldValue(`files[${index}]`, files[0]);
-                          }
-                        }}
-                      />
-                      <ErrorMessage
-                        name={`files[${index}]`}
-                        component="div"
-                        className="mb-3 text-red-500 text-center"
-                      />
-                    </div>
-                  ))}
+                  
 
                   <Button
                     sx={{ fontSize: "16px", fontWeight: "600", padding: "14px", backgroundColor: "#D55200", "&:hover": { background: "#D52200" } }}
@@ -175,10 +144,9 @@ export default function TemporaryDrawer({ id }: { id: number }) {
                     type="submit"
                     className="w-[100%]"
                   >
-                    Create
+                    edite
                   </Button>
                 </Form>
-              )}
             </Formik>
           </div>
         </div>
@@ -193,7 +161,7 @@ export default function TemporaryDrawer({ id }: { id: number }) {
         onClick={toggleDrawer(true)}
         className="py-2 px-5 rounded-md bg-[#D55200] text-white font-medium hover:bg-[rgb(213,110,0)] duration-300 active:bg-[#D55200]"
       >
-        Create
+        edite
       </button>
 
       <Drawer anchor="left" open={open} onClose={toggleDrawer(false)}>

@@ -105,6 +105,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               : heder.value == "t/r" ? <>{page * limit -(limit - 1) +index }</> 
                               : heder.value == "image" ? <><img className="w-[120px] h-[40px] object-contain" src={body?.image} alt="brand logo" /></> 
                               : heder.value == "price" ? <>{body?.price} $</> 
+                              : heder.value == "product_id?.name" ? <>{body?.product_id?.name}</> 
                               : (body[heder.value])
                             }</TableCell>
                           })

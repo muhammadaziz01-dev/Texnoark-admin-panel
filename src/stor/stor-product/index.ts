@@ -1,7 +1,12 @@
 
 import { create } from 'zustand' ;
 import { toast } from 'react-toastify'; 
+// import { useNavigate } from 'react-router-dom';
+
 import { product , StoreProduct } from '@product';
+
+// const navigate = useNavigate()
+
 
 
 const useProductStore = create <StoreProduct> ((set)=>({
@@ -83,6 +88,38 @@ const useProductStore = create <StoreProduct> ((set)=>({
                 }
     },
 
+    
+
+    deleteProductDetels: async(id)=>{
+        try{
+           const respons = await product.deleteProducDetels(id)
+        //    console.log(respons)
+           if(respons.status === 200){
+               set({productsId:null}) ;
+               toast.success("Deleted successfully");
+               return respons?.status
+            //    setTimeout(()=>{
+            //     navigate('/home/product')
+            //    }, 1000)
+
+           }
+        }catch(error:any){
+            console.log(error)
+        }
+    },
+
+    updateProductDetels : async(data)=>{
+            try{
+                const respons = await product.updateProductDetels(data)
+                if(respons?.status === 200){
+                    // set((state)=>({productsId: {...state.productsId,...data.putData}}))
+                    return respons?.status
+                }
+                
+                }catch(error:any){
+                    console.log(error)
+                }
+    },
 }))
 
 export default useProductStore
