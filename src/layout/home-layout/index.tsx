@@ -72,6 +72,7 @@ export default function ResponsiveDrawer(props: Props) {
     if (pathname === "/home/stock") return "Stock";
     if (pathname === "/home/settings") return "Settings";
     if (pathname === "/home/products") return "Products";
+    if (pathname === "/home/banner") return "Banner";
     if (pathname === "/home") return "Category";
     if (/^\/home\/category\/\d+$/.test(pathname)) return "Subcategory"; 
     if (/^\/home\/brands\/\d+$/.test(pathname)) return "Brand Catigory"; 

@@ -5,6 +5,7 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import SettingsIcon from '@mui/icons-material/Settings';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 interface navListInterface {
     path: string,
@@ -48,6 +49,11 @@ const navList:navListInterface[] = [
         path:"/home/settings"  ,
         title:"Settings",
         icon: <SettingsIcon />,
+    },
+    {
+        path:"/home/banner"  ,
+        title:"Banner",
+        icon: <ViewCarouselIcon />,
     },
 ]
 

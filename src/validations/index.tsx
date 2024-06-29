@@ -59,3 +59,11 @@ export const productDetailValidationSchema = Yup.object().shape({
   file: Yup.string().required("Image is required")
 });
 //--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+// Validaton ->   Brand  <-----
+export const bannerValidationSchema = Yup.object().shape({
+  position: Yup.string().required("Position is required"),
+  file: Yup.string().required("Image is required")
+});
+//==-=---------------=====-==-=-=-=-=--=-=-====-=--=-==--=-=-=-=-=-=-=-=-=

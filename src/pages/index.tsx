@@ -10,6 +10,7 @@ import Product from "./product";
 import ProductDetalis from "./product/product-detail"
 import Settings from "./settings";
 import Stock from "./stock";
+import Banner from "./banner";
 
 export { 
     Auth, 
@@ -24,4 +25,5 @@ export {
     Product , 
     ProductDetalis,
     Stock, 
+    Banner,
 };

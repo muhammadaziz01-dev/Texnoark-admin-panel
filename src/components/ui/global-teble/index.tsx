@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 import {  useSearchParams } from "react-router-dom";
 
 import { Props } from "@globol-interface";
-import { ModalDelete , ModalBrand , ModalBrandSingle , ModalCategory , ModalSubCategory , ModalBrandCategory , ModalProduct , ModalStock} from "@modals"
+import { ModalDelete , ModalBrand , ModalBrandSingle , ModalCategory , ModalSubCategory , ModalBrandCategory , ModalProduct , ModalStock , ModalBaner} from "@modals"
 
 
 function indec({ heders, body, skelatonLoader }: Props) {
@@ -85,7 +85,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               <ModalSubCategory title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action4" ? <div className="flex items-center gap-2">
-                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand-category"/></div>
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="++++9"/></div>
                               <ModalBrandCategory title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action5" ? <div className="flex items-center gap-2">
@@ -96,6 +96,10 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               :heder.value == "action6" ? <div className="flex items-center gap-2">
                               <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand-category"/></div>
                               <ModalBrandSingle title="put" id={body?.id} data={body}/>
+                              </div>
+                              :heder.value == "banner" ? <div className="flex items-center gap-2">
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="banner"/></div>
+                              <ModalBaner title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action7" ? <div className="flex items-center gap-2">
                               <div className=' text-gray-500'><ModalDelete id={body?.id} title="stock"/></div>
