@@ -38,6 +38,7 @@ export default function FadeMenu({id , title}:{id:number , title : string}) {
 
   
   const deleteData = async() => {
+    console.log(id , title)
     if(title == "brand"){
       try{
           const staus = await deleteBrand(id)

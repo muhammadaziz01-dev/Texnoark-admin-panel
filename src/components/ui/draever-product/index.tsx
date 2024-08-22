@@ -9,7 +9,17 @@ import ClearIcon from '@mui/icons-material/Clear';
 import useProductStore from "@store-product";
 import { toast } from "react-toastify";
 
+
+
+
 export default function TemporaryDrawer({ data , id }:any) {
+
+
+
+
+
+
+
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {

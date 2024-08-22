@@ -165,7 +165,7 @@ export default function BasicModal({title , id , data}:propsData) {
                       {item.name}
                     </MenuItem>
                   ))}
-                </Field>
+              </Field>
 
               <Field
                   name= "brand_id"

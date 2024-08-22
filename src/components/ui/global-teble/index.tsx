@@ -85,7 +85,7 @@ function indec({ heders, body, skelatonLoader }: Props) {
                               <ModalSubCategory title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action4" ? <div className="flex items-center gap-2">
-                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="++++9"/></div>
+                              <div className=' text-gray-500'><ModalDelete id={body?.id} title="brand-category"/></div>
                               <ModalBrandCategory title="put" id={body?.id} data={body}/>
                               </div>
                               :heder.value == "action5" ? <div className="flex items-center gap-2">
