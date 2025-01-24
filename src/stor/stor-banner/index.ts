@@ -30,7 +30,7 @@ const useBannerStore = create <StoreBanner> ((set)=>({
     postBanner: async(data)=>{
         const access_token = getCookies("access_token");
         try {
-            const response = await axios.post('https://ecomapi.ilyosbekdev.uz/ads/create', data, {
+            const response = await axios.post('https://texnoark.ilyosbekdev.uz/ads/create', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization:  `Bearer ${access_token}`
